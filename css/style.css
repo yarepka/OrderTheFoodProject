@@ -102,7 +102,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 1%;
   margin-top: 1.5rem;
   display: flex;
   align-items: center;
@@ -206,6 +205,10 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.food-item {
+    
+}
+
 .food-name,
 .food-price {
   padding: 0.8rem;
@@ -214,6 +217,10 @@ body {
 
 .food-price {
   font-size: 1.2rem;
+}
+
+.food-price .fa-wallet {
+  color: #21bf73;
 }
 
 .food-name {
@@ -264,6 +271,17 @@ body {
 
   .main-nav .right-menu {
     display: none;
+  }
+}
+
+/* Media querie for food menu */
+@media (max-width: 830px) {
+  .food-nav {
+    display: block;
+  }
+
+  .food-nav ul a {
+    display: block;
   }
 }
 
