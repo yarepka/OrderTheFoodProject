@@ -167,6 +167,12 @@ body {
 }
 
 /* Food items */
+.color-content {
+  background-color: #f9fcfb;
+  padding-bottom: 20px;
+  border-radius: 0 0 10px 10px;
+}
+
 .food-picture {
   width: 300px;
   height: 200px;
@@ -177,8 +183,6 @@ body {
 .food-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background-color: #f9fcfb;
-  border-radius: 0 0 10px 10px;
   grid-gap: 20px;
   padding-top: 25px;
 }
@@ -205,6 +209,24 @@ body {
   font-size: 2rem;
 }
 
+/* Show more button */
+.show-btn {
+  display: block !important;
+  background-color: #ffa41b;
+  padding: 0.8rem 1.2rem;
+  width: 95%;
+  margin: 0 auto;
+}
+.show-btn a {
+  display: block;
+  text-align: center;
+}
+
+.show-btn a {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
 /* Footer */
 .main-footer {
   padding: 1rem;
@@ -212,4 +234,7 @@ body {
   background-color: #f9fcfb;
   color: #222831;
   text-align: center;
+  font-weight: 700;
 }
+
+/* Media queries */

@@ -2,6 +2,7 @@ let locationBtn = document.querySelector(".location");
 let moreBtn = document.querySelector(".more-btn");
 let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
+let showButton = document.querySelector(".show-btn a");
 
 locationBtn.addEventListener("click", () => {
   document.querySelector(".dropdown-content").classList.toggle("show");
@@ -17,6 +18,11 @@ moreBtn.addEventListener("click", () => {
     moreIcon.classList.remove("fa-angle-up");
     moreIcon.classList.add("fa-angle-down");
   }
+});
+
+// don't move camera when click the button
+showButton.addEventListener("click", (e) => {
+  e.preventDefault();
 });
 
 // set current year
