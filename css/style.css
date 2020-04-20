@@ -67,7 +67,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 3.8rem;
+  top: 3.78rem;
   background-color: #f9f9f9;
   min-width: 10rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -81,6 +81,17 @@ body {
 
 .logo {
   color: #21bf73;
+}
+
+/* Hamburget button */
+.hamburger-button {
+  display: none;
+  position: absolute;
+  right: 5%;
+  color: #222831;
+}
+
+.hamburger-button {
 }
 
 /* Showcase */
@@ -169,7 +180,7 @@ body {
 /* Food items */
 .color-content {
   background-color: #f9fcfb;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -238,3 +249,34 @@ body {
 }
 
 /* Media queries */
+@media (max-width: 1060px) {
+  .food-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .showcase h1 {
+    width: 50%;
+  }
+
+  .hamburger-button {
+    display: block;
+  }
+
+  .main-nav .right-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .food-items {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase h1 {
+    font-size: 1.85rem;
+  }
+
+  .main-nav .main-menu {
+    display: none;
+  }
+}
