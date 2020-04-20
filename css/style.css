@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* main-nav */
+.line {
+  background-color: #f9fcfb;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 20px 0;
+  justify-content: space-between;
+}
+.main-nav ul {
+  display: flex;
+}
+
+.main-nav ul li {
+  padding: 0 10px;
+}
+
+.main-nav ul li a {
+  padding: 14px 16px;
+  color: #222831;
+  font-size: 20px;
+  border-radius: 3%;
+}
+
+.main-nav ul li a:hover {
+  transition: all 0.5s ease-out;
+  color: #f4f4f4;
+  background: #ffa41b;
+}
+
+.main-nav ul.main-menu {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 3.8rem;
+  background-color: #f9f9f9;
+  min-width: 10rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.8rem 1.3rem;
+}
+
+.logo {
+  color: #21bf73;
+}
+
+/* Showcase */
+.showcase {
+  width: 100%;
+  height: 400px;
+  background: url("../img/all.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  border-radius: 1%;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.showcase h1 {
+  padding-left: 2.5rem;
+  font-weight: 700;
+  color: #222831;
+  font-size: 2.2rem;
+}
+
+/* Food menu */
+.more-btn {
+  position: relative;
+}
+
+.food-nav {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 20px 0;
+  justify-content: space-between;
+}
+
+.food-nav ul {
+  display: flex;
+}
+
+.food-nav ul li a,
+.food-nav .more-btn a {
+  padding: 8px 16px;
+  margin-right: 10px;
+  font-size: 20px;
+  border-radius: 3%;
+  color: #222831;
+}
+
+.food-nav ul li a:hover,
+.food-nav .more-btn a:hover {
+  color: #222831 !important;
+  background-color: #f4f4f4;
+}
+
+.more-content {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 10rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.more-btn .more-content a {
+  margin: 0;
+}
+
+.more-content a {
+  display: block;
+}
+
+.active {
+  color: #f4f4f4 !important;
+  background-color: #ffa41b;
+}
+
+.show {
+  display: block;
+}
