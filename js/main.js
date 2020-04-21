@@ -2,11 +2,18 @@ let locationBtn = document.querySelector(".location");
 let moreBtn = document.querySelector(".more-btn");
 let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
-let showButton = document.querySelector(".show-btn a");
 let toggler = document.querySelector(".toggler");
+let buttons = document.querySelectorAll("a");
+let mobileLocationBtn = document.querySelector(".mobile-location");
 
 locationBtn.addEventListener("click", () => {
   document.querySelector(".dropdown-content").classList.toggle("show");
+});
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
 });
 
 moreBtn.addEventListener("click", (e) => {
@@ -31,9 +38,10 @@ window.addEventListener("resize", (e) => {
     let button = (document.querySelector(".toggler").checked = false);
   }
 });
-// don't move camera when click the button
-showButton.addEventListener("click", (e) => {
-  e.preventDefault();
+
+mobileLocationBtn.addEventListener("click", () => {
+  let dropDownMobile = document.querySelector(".dropdown-content.mobile");
+  dropDownMobile.classList.toggle("show");
 });
 
 // set current year
