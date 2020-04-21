@@ -3,6 +3,7 @@ let moreBtn = document.querySelector(".more-btn");
 let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
 let showButton = document.querySelector(".show-btn a");
+let toggler = document.querySelector(".toggler");
 
 locationBtn.addEventListener("click", () => {
   document.querySelector(".dropdown-content").classList.toggle("show");
@@ -21,6 +22,15 @@ moreBtn.addEventListener("click", (e) => {
   }
 });
 
+window.addEventListener("resize", (e) => {
+  let width =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
+  if (width >= 1061) {
+    let button = (document.querySelector(".toggler").checked = false);
+  }
+});
 // don't move camera when click the button
 showButton.addEventListener("click", (e) => {
   e.preventDefault();

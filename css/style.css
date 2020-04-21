@@ -1,3 +1,11 @@
+:root {
+  --background-color: #f9fcfb;
+  --button-oragne-color: #ffa41b;
+  --text-color: #222831;
+  --overlay-color: rgba(196, 212, 224, 0.85);
+  --menu-speed: 0.75s;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +24,7 @@ a {
   width: 90%;
   max-width: 1100px;
   margin: auto;
+  position: relative;
 }
 
 body {
@@ -28,7 +37,7 @@ body {
   position: fixed;
   top: 0;
   z-index: 2;
-  background-color: #f9fcfb;
+  background-color: var(--background-color);
 }
 
 .main-nav {
@@ -48,7 +57,7 @@ body {
 
 .main-nav ul li a {
   padding: 14px 16px;
-  color: #222831;
+  color: var(--text-color);
   font-size: 20px;
   border-radius: 3%;
 }
@@ -56,7 +65,7 @@ body {
 .main-nav ul li a:hover {
   transition: all 0.5s ease-out;
   color: #f4f4f4;
-  background: #ffa41b;
+  background: var(--button-oragne-color);
 }
 
 .main-nav ul.main-menu {
@@ -83,14 +92,6 @@ body {
   color: #21bf73;
 }
 
-/* Hamburget button */
-.hamburger-button {
-  display: none;
-  position: absolute;
-  right: 5%;
-  color: #222831;
-}
-
 /* Showcase */
 .showcase {
   width: 100%;
@@ -107,7 +108,7 @@ body {
 .showcase h1 {
   padding-left: 2.5rem;
   font-weight: 700;
-  color: #222831;
+  color: var(--text-color);
   font-size: 2.2rem;
 }
 
@@ -136,12 +137,12 @@ body {
   margin-right: 10px;
   font-size: 20px;
   border-radius: 3%;
-  color: #222831;
+  color: var(--text-color);
 }
 
 .food-nav ul li a:hover,
 .food-nav .more-btn a:hover {
-  color: #222831 !important;
+  color: var(--text-color) !important;
   background-color: #f4f4f4;
 }
 
@@ -166,7 +167,7 @@ body {
 
 .active {
   color: #f4f4f4 !important;
-  background-color: #ffa41b;
+  background-color: var(--button-oragne-color);
 }
 
 .show {
@@ -175,7 +176,7 @@ body {
 
 /* Food items */
 .color-content {
-  background-color: #f9fcfb;
+  background-color: var(--background-color);
   padding-bottom: 25px;
   border-radius: 0 0 10px 10px;
 }
@@ -205,7 +206,7 @@ body {
 .food-name,
 .food-price {
   padding: 0.8rem;
-  color: #222831;
+  color: var(--text-color);
 }
 
 .food-price {
@@ -223,7 +224,7 @@ body {
 /* Show more button */
 .show-btn {
   display: block !important;
-  background-color: #ffa41b;
+  background-color: var(--button-oragne-color);
   padding: 0.8rem 1.2rem;
   width: 95%;
   margin: 0 auto;
@@ -242,27 +243,196 @@ body {
 .main-footer {
   padding: 1rem;
   margin-top: 50px;
-  background-color: #f9fcfb;
-  color: #222831;
+  background-color: var(--background-color);
+  color: var(--text-color);
   text-align: center;
   font-weight: 700;
 }
 
+/* Hamburger menu */
+.menu-wrap {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  z-index: 1;
+}
+
+/* checkbox */
+.menu-wrap .toggler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
+.menu-wrap .hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger line */
+.menu-wrap .hamburger > div {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background-color: #21bf73;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+/* Top and bottom lines */
+.menu-wrap .hamburger > div:before,
+.menu-wrap .hamburger > div:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  width: 100%;
+  height: 3px;
+  background: inherit;
+}
+
+/* Moves line down */
+.menu-wrap .hamburger > div:after {
+  top: 10px;
+}
+
+/* Toggler animate */
+.menu-wrap .toggler:checked + .hamburger > div {
+  transform: rotate(135deg);
+}
+
+/* Turn lines into X */
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* Rotate on hover when checked */
+.menu-wrap .toggler:checked:hover + .hamburger > div {
+  transform: rotate(225deg);
+}
+
+/* Show menu */
+.menu-wrap .toggler:checked ~ .menu {
+  visibility: visible;
+}
+
+.menu-wrap .toggler:checked ~ .menu > div {
+  transform: scale(1);
+  transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-wrap .menu > div {
+  background: var(--overlay-color);
+  border-radius: 50%;
+  width: 300vw;
+  height: 300vw;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.menu-wrap .menu > div > div {
+  max-width: 90vw;
+  max-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li {
+  list-style: none;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.menu-wrap .menu > div > div > ul > li > a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.8rem 1.3rem;
+  transition: color 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li > a:hover {
+  transition: all 0.6s ease-in-out;
+  background-color: var(--button-oragne-color);
+  color: #f9fcfb;
+}
+
 /* Media queries */
+@media (min-width: 1061px) {
+  .menu-wrap .toggler:checked ~ .menu {
+    visibility: hidden;
+  }
+
+  .menu-wrap .toggler:checked ~ .menu > div {
+    transform: scale(0);
+    transition-duration: var(--menu-speed);
+  }
+
+  .menu-wrap .toggler:checked ~ .menu > div > div {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+}
+
 @media (max-width: 1060px) {
   .food-items {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu-wrap {
+    visibility: visible;
+    right: 5%;
   }
 
   .showcase h1 {
     width: 50%;
   }
 
-  .hamburger-button {
-    display: block;
+  .main-nav .right-menu {
+    display: none;
   }
 
-  .main-nav .right-menu {
+  .main-nav .main-menu {
     display: none;
   }
 }
@@ -271,6 +441,10 @@ body {
 @media (max-width: 830px) {
   .food-nav ul {
     flex-direction: column;
+  }
+
+  .menu-wrap {
+    right: 6%;
   }
 
   .food-nav {
@@ -292,11 +466,11 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .showcase h1 {
-    font-size: 1.85rem;
+  .menu-wrap {
+    right: 10%;
   }
 
-  .main-nav .main-menu {
-    display: none;
+  .showcase h1 {
+    font-size: 1.85rem;
   }
 }
