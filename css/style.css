@@ -91,9 +91,6 @@ body {
   color: #222831;
 }
 
-.hamburger-button {
-}
-
 /* Showcase */
 .showcase {
   width: 100%;
@@ -205,10 +202,6 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.food-item {
-    
-}
-
 .food-name,
 .food-price {
   padding: 0.8rem;
@@ -276,12 +269,21 @@ body {
 
 /* Media querie for food menu */
 @media (max-width: 830px) {
-  .food-nav {
-    display: block;
+  .food-nav ul {
+    flex-direction: column;
   }
 
-  .food-nav ul a {
-    display: block;
+  .food-nav {
+    height: 100%;
+    align-items: flex-start;
+  }
+
+  .food-nav ul li a {
+    display: inline-block;
+  }
+
+  .food-nav ul li:not(:last-child) a {
+    margin-bottom: 10px;
   }
 }
 
