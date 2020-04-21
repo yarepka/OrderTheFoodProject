@@ -42,6 +42,7 @@ window.addEventListener("resize", (e) => {
 mobileLocationBtn.addEventListener("click", () => {
   let dropDownMobile = document.querySelector(".dropdown-content.mobile");
   dropDownMobile.classList.toggle("show");
+  mobileLocationBtn.classList.toggle("active");
 });
 
 // set current year
