@@ -10,11 +10,11 @@ locationBtn.addEventListener("click", () => {
   document.querySelector(".dropdown-content").classList.toggle("show");
 });
 
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
-});
+// buttons.forEach((button) => {
+//   button.addEventListener("click", (e) => {
+//     e.preventDefault();
+//   });
+// });
 
 moreBtn.addEventListener("click", (e) => {
   let moreContent = document.querySelector(".more-content");

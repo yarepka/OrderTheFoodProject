@@ -11,6 +11,7 @@
       name="keywords"
       content="order food, restaurant, russian, georgian, asian"
     />
+    <link rel="shortcut icon" type="image/x-icon" href="./img/icon.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
@@ -36,15 +37,14 @@
 
           <ul class="right-menu">
             <li class="dropdown">
-              <a href="#" class="location"
-                >Location <i class="fas fa-map-marker-alt fa-xs"></i
+              <a class="location"
+                ><%= currentLocation %>
+                <i class="fas fa-map-marker-alt fa-xs"></i
               ></a>
               <div class="dropdown-content">
-                <a href="#">Moscow</a>
-                <a href="#">St.Petersburg</a>
-                <a href="#">Sochi</a>
-                <a href="#">Tosno</a>
-                <a href="#">Sablino</a>
+                <% locations.forEach((location) => { %>
+                <a href="/<%= location.name %>"><%= location.name %></a>
+                <% }) %>
               </div>
             </li>
 
@@ -69,15 +69,14 @@
                   <li><a href="#">Couriers</a></li>
                   <li><a href="#">Companies</a></li>
                   <li class="dropdown">
-                    <a href="#" class="mobile-location"
-                      >Location <i class="fas fa-map-marker-alt fa-xs"></i
+                    <a class="mobile-location"
+                      ><%= currentLocation %>
+                      <i class="fas fa-map-marker-alt fa-xs"></i
                     ></a>
                     <div class="dropdown-content mobile">
-                      <a href="#">Moscow</a>
-                      <a href="#">St.Petersburg</a>
-                      <a href="#">Sochi</a>
-                      <a href="#">Tosno</a>
-                      <a href="#">Sablino</a>
+                      <% locations.forEach((location) => { %>
+                      <a href="/<%= location.name %>"><%= location.name %></a>
+                      <% }) %>
                     </div>
                   </li>
                   <li>
@@ -102,7 +101,7 @@
     <div class="container">
       <!-- Showcase -->
       <header class="showcase">
-        <h1>Fast delivery to St.Petersburg.</h1>
+        <h1>Fast delivery to <%= currentLocation %>.</h1>
       </header>
 
       <!-- Food-menu -->
