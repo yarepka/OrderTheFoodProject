@@ -11,6 +11,7 @@
       name="keywords"
       content="order food, restaurant, russian, georgian, asian"
     />
+    <base href="/" />
     <link rel="shortcut icon" type="image/x-icon" href="./img/icon.png" />
     <link
       rel="stylesheet"
@@ -18,7 +19,7 @@
       integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Order Food</title>
   </head>
   <body>
@@ -100,7 +101,13 @@
 
     <div class="container">
       <!-- Showcase -->
-      <header class="showcase">
+      <header
+        class="showcase"
+        style="
+          background: url(../img/<%=mainPhoto%>.jpg) no-repeat center
+            center/cover;
+        "
+      >
         <h1>Fast delivery to <%= currentLocation %>.</h1>
       </header>
 
@@ -108,21 +115,21 @@
 
       <div class="food-nav">
         <ul>
-          <li><a href="#" class="active">All</a></li>
-          <li><a href="#">Burgers</a></li>
-          <li><a href="#">Sushi</a></li>
-          <li><a href="#">Pizza</a></li>
-          <li><a href="#">Healthy</a></li>
-          <li><a href="#">Vegetarian</a></li>
+          <li><a href="/<%= currentLocation %>/All">All</a></li>
+          <li><a href="/<%= currentLocation %>/Burgers">Burgers</a></li>
+          <li><a href="/<%= currentLocation %>/Sushi">Sushi</a></li>
+          <li><a href="/<%= currentLocation %>/Pizza">Pizza</a></li>
+          <li><a href="/<%= currentLocation %>/Healthy">Healthy</a></li>
+          <li><a href="/<%= currentLocation %>/Vegetarian">Vegetarian</a></li>
         </ul>
 
         <div class="more-btn">
-          <a href="#">More <i class="fas fa-angle-down"></i></a>
+          <a>More <i class="fas fa-angle-down"></i></a>
           <div class="more-content">
-            <a href="#">Russian</a>
-            <a href="#">Italian</a>
-            <a href="#">Asian</a>
-            <a href="#">Georgian</a>
+            <a href="/<%= currentLocation %>/Russian">Russian</a>
+            <a href="/<%= currentLocation %>/Italian">Italian</a>
+            <a href="/<%= currentLocation %>/Asian">Asian</a>
+            <a href="/<%= currentLocation %>/Georgian">Georgian</a>
           </div>
         </div>
       </div>
@@ -130,86 +137,25 @@
       <div class="color-content">
         <!-- Food items -->
         <div class="food-items">
-          <div class="food-item">
-            <a href="#">
-              <div
-                class="food-picture"
-                style="background: url(https://picsum.photos/300);"
-              ></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
 
-          <div class="food-item">
-            <a href="#">
-              <div class="food-picture"></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
+          <% food.forEach(food => { %>
+            <div class="food-item">
+              <a href="#">
+                <div class="food-picture" style="background: url('https://source.unsplash.com/300x200/?pizza')"></div>
+                <h3 class="food-name"><%= food.name %></h3>
+                <p class="food-price">
+                  <i class="fas fa-wallet"></i> <%= food.price %><i
+                    class="fas fa-dollar-sign"
+                  ></i>
+                </p>
+              </a>
+            </div>
+          <% }) %>
+      </div>
 
-          <div class="food-item">
-            <a href="#">
-              <div class="food-picture"></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
-
-          <div class="food-item">
-            <a href="#">
-              <div class="food-picture"></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
-
-          <div class="food-item">
-            <a href="#">
-              <div class="food-picture"></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
-
-          <div class="food-item">
-            <a href="#">
-              <div class="food-picture"></div>
-              <h3 class="food-name">Pepperoni</h3>
-              <p class="food-price">
-                <i class="fas fa-wallet"></i> 25.00<i
-                  class="fas fa-dollar-sign"
-                ></i>
-              </p>
-            </a>
-          </div>
-        </div>
-
-        <!-- Show more button -->
-        <div class="show-btn">
-          <a href="#">Show more <i class="fas fa-angle-down"></i></a>
-        </div>
+      <!-- Show more button -->
+      <div class="show-btn">
+        <a href="#">Show more <i class="fas fa-angle-down"></i></a>
       </div>
     </div>
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add food</title>
+  </head>
+  <body>
+    <form action="/addFood" method="POST">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" />
+      </div>
+
+      <div>
+        <label for="type">Type:</label>
+        <div>
+          <label>Burgers: </label>
+          <input type="checkbox" name="type" value="Burgers" />
+        </div>
+
+        <div>
+          <label>Sushi: </label>
+          <input type="checkbox" name="type" value="Sushi" />
+        </div>
+
+        <div>
+          <label>Pizza: </label>
+          <input type="checkbox" name="type" value="Pizza" />
+        </div>
+
+        <div>
+          <label>Healthy: </label>
+          <input type="checkbox" name="type" value="Healthy" />
+        </div>
+
+        <div>
+          <label>Vegetarian</label>
+          <input type="checkbox" name="type" value="Vegetarian" />
+        </div>
+
+        <div>
+          <label>Russian: </label>
+          <input type="checkbox" name="type" value="Russian" />
+        </div>
+
+        <div>
+          <label>Italian: </label>
+          <input type="checkbox" name="type" value="Italian" />
+        </div>
+
+        <div>
+          <label>Asian: </label>
+          <input type="checkbox" name="type" value="Asian" />
+        </div>
+
+        <div>
+          <label>Georgian: </label>
+          <input type="checkbox" name="type" value="Georgian" />
+        </div>
+      </div>
+
+      <div>
+        <label>Price</label>
+        <input type="text" name="price" />
+      </div>
+
+      <div>
+        <label>Description:</label><br />
+        <textarea name="description" cols="30" rows="10"></textarea>
+      </div>
+
+      <div>
+        <label>Preparation Time:</label><br />
+        <input type="number" name="preparationTime" />
+      </div>
+
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

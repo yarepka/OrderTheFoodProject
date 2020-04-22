@@ -23,40 +23,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Location model
 const Location = require("./models/Location");
 
-app.get("/", (req, res) => {
-  Location.findOne({}, (err, location) => {
-    if (!err) {
-      if (location) {
-        const firstLocation = _.startCase(_.toLower(location.name));
-        console.log("redirect to: /" + firstLocation);
-        res.redirect("/" + firstLocation);
-      } else {
-        console.log("Locations collection is empty.");
-      }
-    } else {
-      console.log("Error while finding for the first location. Error: " + err);
-    }
-  });
-});
+// Food model
+const Food = require("./models/Food");
 
-app.get("/addLocation", (req, res) => {
-  res.render("addLocation");
-});
-
-app.get("/:location", (req, res) => {
-  const currentLocation = _.startCase(_.toLower(req.params.location));
-  console.log("CurrentLocation: " + currentLocation);
-
-  // check if this location is exists
+function checkLocation(currentLocation, res, callback) {
   Location.find({}, (err, locations) => {
     if (!err) {
       if (locations.length > 0) {
         Location.findOne({ name: currentLocation }, (err, foundLocation) => {
           if (!err) {
             if (foundLocation) {
-              res.render("index", {
+              callback({
                 currentLocation: currentLocation,
                 locations: locations,
+                mainPhoto: "all",
               });
             } else {
               console.log(
@@ -80,6 +60,106 @@ app.get("/:location", (req, res) => {
     } else {
       console.log("Error while finding locations: " + err);
     }
+  });
+}
+
+app.get("/", (req, res) => {
+  Location.findOne({}, (err, location) => {
+    if (!err) {
+      if (location) {
+        const firstLocation = _.startCase(_.toLower(location.name));
+        console.log("redirect to: /" + firstLocation);
+        res.redirect("/" + firstLocation);
+      } else {
+        console.log("Locations collection is empty.");
+      }
+    } else {
+      console.log("Error while finding for the first location. Error: " + err);
+    }
+  });
+});
+
+app.get("/addLocation", (req, res) => {
+  res.render("addLocation");
+});
+
+app.get("/addFood", (req, res) => {
+  res.render("addFood");
+});
+
+app.get("/:location", (req, res) => {
+  const currentLocation = _.startCase(_.toLower(req.params.location));
+  console.log("CurrentLocation: " + currentLocation);
+
+  checkLocation(currentLocation, res, (objReturned) => {
+    Food.find()
+      .limit(20)
+      .exec((err, food) => {
+        if (!err) {
+          if (food.length > 0) {
+            const temp = {
+              currentLocation: objReturned.currentLocation,
+              locations: objReturned.locations,
+              mainPhoto: "All",
+              food: food,
+            };
+            res.render("index", temp);
+          } else {
+            console.log("All type is not exists.");
+          }
+        } else {
+          console.log("Error while finding All: " + err);
+        }
+      });
+  });
+});
+
+app.get("/:location/:food", (req, res) => {
+  const currentLocation = _.startCase(_.toLower(req.params.location));
+  const currentFood = _.startCase(_.toLower(req.params.food));
+  // check if location exists first
+  checkLocation(currentLocation, res, (objReturned) => {
+    // *** STUB ***
+    Food.find()
+      .limit(20)
+      .exec((err, food) => {
+        if (!err) {
+          if (food.length > 0) {
+            const temp = {
+              currentLocation: objReturned.currentLocation,
+              locations: objReturned.locations,
+              mainPhoto: _.toLower(req.params.food),
+              food: food,
+            };
+            res.render("index", temp);
+          } else {
+            console.log("All type is not exists.");
+          }
+        } else {
+          console.log("Error while finding All: " + err);
+        }
+      });
+    // check if the food exists
+    // stub
+    // Food.find({ type: currentFood })
+    //   .limit(20)
+    //   .exec((err, food) => {
+    //     if (!err) {
+    //       if (food.length > 0) {
+    //         const temp = {
+    //           currentLocation: objReturned.currentLocation,
+    //           locations: objReturned.locations,
+    //           mainPhoto: _.toLower(req.params.food),
+    //           food: food,
+    //         };
+    //         res.render("index", temp);
+    //       } else {
+    //         console.log(currentFood + " type is not exists.");
+    //       }
+    //     } else {
+    //       console.log("Error while finding " + currentFood + ": " + err);
+    //     }
+    //   });
   });
 });
 
@@ -107,6 +187,19 @@ app.post("/addLocation", (req, res) => {
       );
     }
   });
+});
+
+app.post("/addFood", (req, res) => {
+  console.log(req.body);
+  res.render("addFood");
+  const newFood = new Food({
+    name: req.body.name,
+    type: req.body.type,
+    price: req.body.price,
+    description: req.body.description,
+    preparationTime: req.body.preparationTime,
+  });
+  newFood.save();
 });
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
