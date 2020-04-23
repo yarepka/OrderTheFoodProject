@@ -108,6 +108,7 @@ app.get("/:location/:food", (req, res) => {
             const food = [];
             foundfood.forEach((f) => {
               const newItem = {
+                id: f._id,
                 name: f.name,
                 type: f.type,
                 price: f.price,
@@ -152,6 +153,10 @@ app.get("/:location/:food", (req, res) => {
         }
       });
   });
+});
+
+app.get("/:location/:food/:id", (req, res) => {
+  console.log(req.params.id);
 });
 
 app.post("/addLocation", (req, res) => {

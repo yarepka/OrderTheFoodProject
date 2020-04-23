@@ -29,7 +29,7 @@ window.addEventListener("resize", (e) => {
     document.documentElement.clientWidth ||
     document.body.clientWidth;
   if (width >= 1061) {
-    let button = (document.querySelector(".toggler").checked = false);
+    document.querySelector(".toggler").checked = false;
   }
 });
 

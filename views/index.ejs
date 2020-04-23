@@ -140,7 +140,7 @@
 
           <% food.forEach(food => { %>
             <div class="food-item">
-              <a href="#">
+              <a href="<%= currentLocation %>/<%= food.type %>/<%= food.id %>">
                 <div class="food-picture" style="background: url('img/burgers/<%= food.picture %>.jpg') no-repeat center center/cover"></div>
                 <h3 class="food-name"><%= food.name %></h3>
                 <p class="food-price">
