@@ -8,6 +8,7 @@ let mobileLocationBtn = document.querySelector(".mobile-location");
 
 locationBtn.addEventListener("click", () => {
   document.querySelector(".dropdown-content").classList.toggle("show");
+  locationBtn.classList.toggle("active");
 });
 
 moreBtn.addEventListener("click", (e) => {

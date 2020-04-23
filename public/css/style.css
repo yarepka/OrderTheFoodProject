@@ -207,6 +207,11 @@ body {
   transition: scale(1);
 }
 
+.food-item a {
+  display: block;
+  width: 300px;
+}
+
 .food-item:hover {
   transition: all 0.3s ease-in-out;
   transform: scale(1.05);
@@ -227,7 +232,8 @@ body {
 }
 
 .food-name {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  height: 70px;
 }
 
 /* Show more button */
@@ -236,6 +242,7 @@ body {
   width: 95%;
   height: 50px;
   margin: 0 auto;
+  border-radius: 2%;
 }
 .show-btn a {
   display: block;
@@ -419,7 +426,7 @@ body {
   display: none;
   position: absolute;
   box-shadow: none;
-  right: -145px;
+  right: -144px;
   top: 183px;
   text-align: center;
   transition: all 0.5s ease-in-out;

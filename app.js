@@ -64,6 +64,9 @@ function checkLocation(currentLocation, res, callback) {
 }
 
 app.get("/", (req, res) => {
+  // finds the first location in the locations collection
+  // this location will be set as a default when user
+  // go to the "/" route
   Location.findOne({}, (err, location) => {
     if (!err) {
       if (location) {
@@ -89,29 +92,7 @@ app.get("/addFood", (req, res) => {
 
 app.get("/:location", (req, res) => {
   const currentLocation = _.startCase(_.toLower(req.params.location));
-  console.log("CurrentLocation: " + currentLocation);
-
-  checkLocation(currentLocation, res, (objReturned) => {
-    Food.find()
-      .limit(20)
-      .exec((err, food) => {
-        if (!err) {
-          if (food.length > 0) {
-            const temp = {
-              currentLocation: objReturned.currentLocation,
-              locations: objReturned.locations,
-              mainPhoto: "All",
-              food: food,
-            };
-            res.render("index", temp);
-          } else {
-            console.log("All type is not exists.");
-          }
-        } else {
-          console.log("Error while finding All: " + err);
-        }
-      });
-  });
+  res.redirect("/" + currentLocation + "/All");
 });
 
 app.get("/:location/:food", (req, res) => {
@@ -119,12 +100,23 @@ app.get("/:location/:food", (req, res) => {
   const currentFood = _.startCase(_.toLower(req.params.food));
   // check if location exists first
   checkLocation(currentLocation, res, (objReturned) => {
-    // *** STUB ***
-    Food.find()
+    Food.find({ type: currentFood })
       .limit(20)
-      .exec((err, food) => {
+      .exec((err, foundfood) => {
         if (!err) {
-          if (food.length > 0) {
+          if (foundfood.length > 0) {
+            const food = [];
+            foundfood.forEach((f) => {
+              const newItem = {
+                name: f.name,
+                type: f.type,
+                price: f.price,
+                description: f.description,
+                preparationTime: f.preparationTime,
+                picture: _.camelCase(f.name),
+              };
+              food.push(newItem);
+            });
             const temp = {
               currentLocation: objReturned.currentLocation,
               locations: objReturned.locations,
@@ -133,33 +125,32 @@ app.get("/:location/:food", (req, res) => {
             };
             res.render("index", temp);
           } else {
-            console.log("All type is not exists.");
+            console.log(currentFood + " type is not exists.");
+            // Stub
+            Food.find()
+              .limit(20)
+              .exec((err, food) => {
+                if (!err) {
+                  if (food.length > 0) {
+                    const temp = {
+                      currentLocation: objReturned.currentLocation,
+                      locations: objReturned.locations,
+                      mainPhoto: _.toLower(req.params.food),
+                      food: food,
+                    };
+                    res.render("index", temp);
+                  } else {
+                    console.log("All type is not exists.");
+                  }
+                } else {
+                  console.log("Error while finding All: " + err);
+                }
+              });
           }
         } else {
-          console.log("Error while finding All: " + err);
+          console.log("Error while finding " + currentFood + ": " + err);
         }
       });
-    // check if the food exists
-    // stub
-    // Food.find({ type: currentFood })
-    //   .limit(20)
-    //   .exec((err, food) => {
-    //     if (!err) {
-    //       if (food.length > 0) {
-    //         const temp = {
-    //           currentLocation: objReturned.currentLocation,
-    //           locations: objReturned.locations,
-    //           mainPhoto: _.toLower(req.params.food),
-    //           food: food,
-    //         };
-    //         res.render("index", temp);
-    //       } else {
-    //         console.log(currentFood + " type is not exists.");
-    //       }
-    //     } else {
-    //       console.log("Error while finding " + currentFood + ": " + err);
-    //     }
-    //   });
   });
 });
 
