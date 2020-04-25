@@ -28,14 +28,23 @@ window.addEventListener("resize", (e) => {
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
-  if (width >= 1061) {
+  if (width >= 701) {
     document.querySelector(".toggler").checked = false;
+    locationItems = document.querySelectorAll(".location-item");
+    locationItems.forEach(item => {
+      item.classList.remove("show");
+    });
+    if (mobileLocationBtn.classList.contains("active")) {
+      mobileLocationBtn.classList.toggle("active");
+    }
   }
 });
 
 mobileLocationBtn.addEventListener("click", () => {
-  let dropDownMobile = document.querySelector(".dropdown-content.mobile");
-  dropDownMobile.classList.toggle("show");
+  locationItems = document.querySelectorAll(".location-item");
+  locationItems.forEach(item => {
+    item.classList.toggle("show");
+  });
   mobileLocationBtn.classList.toggle("active");
 });
 
