@@ -1,3 +1,4 @@
+to-do-list:
 1. Seeding Data
 2. Outputting Data
 3. Sign Up View, CSRF Protection & User Model
@@ -20,3 +21,6 @@
 20. Admins can edit and delete products
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
+
+routes:
+"/" will be show types 

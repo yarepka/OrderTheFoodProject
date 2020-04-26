@@ -7,6 +7,7 @@ const expressLayouts = require("express-ejs-layouts");
 var logger = require("morgan");
 const PORT = process.env.PORT || 3000;
 const indexRouter = require("./routes/index");
+const foodRouter = require("./routes/food");
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 
 // ORDER matters
+app.use("/food", foodRouter);
 app.use("/", indexRouter);
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
