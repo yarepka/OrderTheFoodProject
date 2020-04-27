@@ -1,10 +1,10 @@
 to-do-list:
-1. Seeding Data
-2. Outputting Data
-3. Sign Up View, CSRF Protection & User Model
-4. Sign Up with Passport
-5. Validation
-6. Sign In
+1. Seeding Data +
+2. Outputting Data +
+3. Sign Up View, CSRF Protection & User Model +
+4. Sign Up with Passport +
+5. Validation +
+6. Sign In +
 7. Protection (unautharized users can't get Profile)
 8. Adding a Session Store
 9. Cart Model
@@ -23,4 +23,7 @@ to-do-list:
 the receipt in pdf format
 
 routes:
-"/" will be show types 
+"/" will be show all types of products
+"/food/:foodType" will show choosen type of food products
+"/user/signin"
+"/user/signup"

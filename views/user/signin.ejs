@@ -1,0 +1,18 @@
+<form id="signin-form" action="user/signin" method="POST" autocomplete="off">
+  <div id="background-image-signin"></div>
+  <div id="signin-container">
+    <label id="signin-title">Login</label>
+    <% if(hasErrors) { %>
+    <div class="error">
+      <% messages.forEach(message => { %>
+      <p><%= message %></p>
+      <% }); %>
+    </div>
+    <% } %>
+    <input class="input" type="email" name="email" placeholder="Enter Email...">
+    <input class="input" type="password" name="password" placeholder="Enter Password...">
+    <p class="not-signin-yet">Don't have an account? <a href="user/signup">Sign Up</a></p>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit">Sign In</button>
+  </div>
+</form>

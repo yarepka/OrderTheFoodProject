@@ -1,0 +1,25 @@
+<form id="signup-form" action="user/signup" method="POST" autocomplete="off">
+  <div id="background-image-signup"></div>
+  <div id="signup-container">
+    <label id="signup-title">Sign Up</label>
+    <% if(hasErrors) { %>
+    <div class="error">
+      <% messages.forEach(message => { %>
+      <p><%= message %></p>
+      <% }); %>
+    </div>
+    <% } %>
+    <input class="input" type="email" name="email" placeholder="Enter Email...">
+    <input class="input" type="password" name="password" placeholder="Enter Password...">
+    <!-- CSRF protection, if session got stolen other users
+      will not be able to create user with this session.
+      This field sends session token which allows the server to
+      identify if the browser sending this token is the same browser
+      which got the session on the first place -->
+
+    <!-- name must be _csrf -->
+    <!-- on more check https://youtu.be/waAqEjjssxU?t=806-->
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit">Sign Up</button>
+  </div>
+</form>
