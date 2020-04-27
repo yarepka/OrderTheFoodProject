@@ -29,14 +29,14 @@
 
       <% products.forEach((product) => {%>
       <div class="food-item">
-        <a href="">
-          <div class="food-picture" style="background:url('<%= product.imagePath %>') no-repeat center center/cover">
-          </div>
-          <h3 class="food-name"><%= product.title %></h3>
-          <p class="food-price">
-            <i class="fas fa-wallet"></i> <i class="fas fa-dollar-sign"><%= product.price %></i>
-          </p>
-        </a>
+        <div class="food-picture" style="background:url('<%= product.imagePath %>') no-repeat center center/cover">
+        </div>
+        <h3 class="food-name"><%= product.title %></h3>
+        <p class="food-price-add-container">
+          <a class="price"><i class="fas fa-dollar-sign"></i><%= product.price %></a>
+          <a class="info" href="#">Info</a>
+          <a class="plus" href="#">+</a>
+        </p>
       </div>
       <% }); %>
 
