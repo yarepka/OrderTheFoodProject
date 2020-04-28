@@ -7,6 +7,10 @@ const Product = require("../models/product");
 
 router.get("/:foodType", (req, res, next) => {
   let foodType = _.startCase(_.toLower(req.params.foodType));
+  Product.distinct("type", function (err, types) {
+    console.log(types);
+  });
+
   Product.find({ type: foodType }, (err, products) => {
     if (!err) {
       if (products.length > 0) {

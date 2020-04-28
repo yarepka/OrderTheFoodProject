@@ -17,17 +17,34 @@
           </div>
         </li>
 
+        <% if(login) { %>
+        <!-- user logged in -->
         <li>
-          <a href="/user/signin"> Sign In <i class="fas fa-sign-in-alt fa-xs"></i> </a>
+          <a href="/user/profile">Profile <i class="fas fa-user-circle"></i></a>
+        </li>
+        <li>
+          <a href="/shopping-cart">
+            <span class="badge"><%= session.cart.totalQty %></span> Cart <i class="fas fa-shopping-cart"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        <% } else { %>
+        <!-- user not logged in -->
+        <li>
+          <a href="/user/signin">Sign In <i class="fas fa-sign-in-alt fa-xs"></i> </a>
         </li>
 
         <li>
-          <a href="/user/signup"> Sign Up <i class="fas fa-user-plus fa-xs"></i> </a>
+          <a href="/user/signup">Sign Up <i class="fas fa-user-plus fa-xs"></i> </a>
         </li>
 
         <li>
-          <a href="">Cart <i class="fas fa-shopping-cart"></i></a>
+          <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
+              class="fas fa-shopping-cart"></i></a>
         </li>
+        <% } %>
       </ul>
 
       <div class="menu-wrap">
@@ -43,19 +60,35 @@
                 <li class="location-item"><a href="#">Moscow</a></li>
                 <li class="location-item"><a href="#">Moscow</a></li>
                 <li class="location-item"><a href="#">Moscow</a></li>
+                <% if(login) { %>
+                <!-- user logged in -->
                 <li>
-                  <a href="/user/signin">
-                    Sign In <i class="fas fa-sign-in-alt fa-xs"></i>
-                  </a>
+                  <a href="/user/profile">Profile <i class="fas fa-user-circle"></i></a>
                 </li>
 
                 <li>
-                  <a href="/user/signup"> Sign Up <i class="fas fa-user-plus fa-xs"></i> </a>
+                  <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
+                      class="fas fa-shopping-cart"></i></a>
                 </li>
 
                 <li>
-                  <a href="">Cart <i class="fas fa-shopping-cart"></i></a>
+                  <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
                 </li>
+                <% } else { %>
+                <!-- user not logged in -->
+                <li>
+                  <a href="/user/signin">Sign In <i class="fas fa-sign-in-alt fa-xs"></i> </a>
+                </li>
+
+                <li>
+                  <a href="/user/signup">Sign Up <i class="fas fa-user-plus fa-xs"></i> </a>
+                </li>
+
+                <li>
+                  <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
+                      class="fas fa-shopping-cart"></i></a>
+                </li>
+                <% } %>
               </ul>
             </div>
           </div>

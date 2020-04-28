@@ -5,10 +5,10 @@ to-do-list:
 4. Sign Up with Passport +
 5. Validation +
 6. Sign In +
-7. Protection (unautharized users can't get Profile)
-8. Adding a Session Store
-9. Cart Model
-10. Cart Views
+7. Protection (unautharized users can't get Profile) +
+8. Adding a Session Store +
+9. Cart Model +
+10. Cart Views / need to do total price at the bottom + "No Items in the cart" + work on badge
 11. Stipe Payment Views
 12. Stripe Verifying Credit Cards
 13. Making Charges With Stripe
@@ -21,6 +21,7 @@ to-do-list:
 20. Admins can edit and delete products
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
+22. Wait untill images will loade before showing the page: https://stackoverflow.com/questions/544993/official-way-to-ask-jquery-wait-for-all-images-to-load-before-executing-somethin
 
 routes:
 "/" will be show all types of products

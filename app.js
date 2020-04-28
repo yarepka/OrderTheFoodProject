@@ -77,6 +77,20 @@ app.use(passport.session());
 // for form parameters access
 app.use(express.urlencoded({ extended: false }));
 
+// Global variables
+app.use((req, res, next) => {
+  // we want to set the global variable "login"
+  // which will be available in all views, which shows
+  // if current user authenticated or not 
+  // (for showin buttons in header.ejs)
+  res.locals.login = req.isAuthenticated();
+
+  // make session available in the views
+  // (makes cart obj available in views)
+  res.locals.session = req.session;
+  next();
+})
+
 // ORDER matters
 app.use("/user", userRouter);
 app.use("/food", foodRouter);

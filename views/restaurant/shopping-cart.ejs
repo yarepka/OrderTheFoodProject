@@ -1,0 +1,36 @@
+<div class="container">
+  <% if(products) { %>
+  <div class="shopping-cart-items">
+    <% products.forEach(product => { %>
+    <div class="shopping-cart-item">
+      <div class="img shopping-cart-picture"
+        style="background: url('<%= product.item.imagePath %>') no-repeat center center/cover">
+      </div>
+      <div class="title-wrapper">
+        <h3>
+          <% if(product.item.title.length > 20) { %>
+          <a href="#"><%= product.item.title.substring(0, 20).trim() %>...</a>
+          <% } else { %>
+          <a href="#"><%= product.item.title %></a>
+          <% } %>
+        </h3>
+      </div>
+      <div class="price-wrapper">
+        <p class="price"><i class="fas fa-dollar-sign"></i><%= product.price.toFixed(2) %></p>
+      </div>
+
+      <div class="buttons-wrapper">
+        <a href="/remove/<%= product.item._id %>" class="remove-btn">Remove</a>
+        <div class="plus-minus">
+          <a href="/reduce/<%= product.item._id %>" class="minus-btn">-</a>
+          <p class="qty"><%= product.qty %></p>
+          <a href="/increase/<%= product.item._id %>" class="plus-btn">+</a>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+  <% } else { %>
+  <h1>No Items in Cart</h1>
+  <% } %>
+</div>
