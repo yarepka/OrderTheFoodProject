@@ -1,5 +1,5 @@
 <div class="container">
-  <% if(products) { %>
+  <% if(products && session.cart.totalQty != 0) { %>
   <div class="shopping-cart-items">
     <% products.forEach(product => { %>
     <div class="shopping-cart-item">
