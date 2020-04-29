@@ -537,7 +537,7 @@ button:hover {
 }
 
 /* signin form */
-#signin-form, #signup-form {
+#signin-form, #signup-form, #checkout-form {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -572,7 +572,7 @@ button:hover {
   opacity: 0.85;
 }
 
-#signin-container, #signup-container {
+#signin-container, #signup-container, #checkout-container {
   display: flex;
   flex-direction: column;
   background-color: var(--background-color);
@@ -752,9 +752,31 @@ button:hover {
 }
 
 /* Checkout */
+#checkout-container label {
+  display: block;
+}
+
+#checkout-container {
+  padding: 1.3rem;
+  border-radius: 10px;
+}
+
+#checkout-total-price-wrapper {
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+#checkout-container h1 {
+  margin-bottom: 20px;
+}
+
+#checkout-container label {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
 
 #background-image-checkout {
-  background: url("../img/checkout.jpg") no-repeat center center/cover;
+  background:url("../img/checkout.jpg") no-repeat center center/cover;
 }
 
 .show {
@@ -822,6 +844,10 @@ button:hover {
     display: none;
   }
 
+  #background-image-checkout {
+    height: 135vh;
+  }
+
   .main-nav .menu-wrap {
     visibility: visible;
   }
@@ -844,6 +870,11 @@ button:hover {
     "title title"
     "price -"
     "pic btn";
+  }
+
+  #checkout-container {
+    margin-top: 300px;
+    padding: 2rem;
   }
 }
 
@@ -878,6 +909,15 @@ button:hover {
     "title title price"
     "pic pic pic"
     "btn btn btn";
+  }
+
+  #background-image-checkout {
+    height: 160vh;
+  }
+
+  #checkout-container {
+    margin-top: 400px;
+    padding: 1.5rem;
   }
 
   .title-wrapper {
