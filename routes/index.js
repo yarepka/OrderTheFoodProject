@@ -95,4 +95,8 @@ router.get("/increase/:id", (req, res, next) => {
   res.redirect("/shopping-cart");
 });
 
+router.get("/checkout", (req, res, next) => {
+  res.render("restaurant/checkout");
+});
+
 module.exports = router;

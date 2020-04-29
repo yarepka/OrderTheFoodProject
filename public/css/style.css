@@ -511,7 +511,7 @@ button:hover {
 .input {
   display: inline-block;
   height: 40px;
-  width: 300px;
+  max-width: 300px;
   margin-bottom: 10px;
   font-size: 1.3rem;
   background-color: var(--background-color);
@@ -563,7 +563,8 @@ button:hover {
 }
 
 #background-image-signin,
-#background-image-signup {
+#background-image-signup,
+#background-image-checkout {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -750,6 +751,12 @@ button:hover {
   opacity: 0.8;
 }
 
+/* Checkout */
+
+#background-image-checkout {
+  background: url("../img/checkout.jpg") no-repeat center center/cover;
+}
+
 .show {
   display: block !important;
 }
@@ -857,6 +864,10 @@ button:hover {
   
   .price-wrapper {
     width: 130px;
+  }
+
+  #signin-container, #signup-container {
+    padding: 1.5rem;
   }
 }
 
