@@ -50,13 +50,15 @@ button:hover {
 
 /* main-nav */
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
   background: #333;
   color: #f4f4f4;
   border-radius: 50%;
-  min-width: 26px;
-  min-height: 26px;
-  text-align: center;
+  padding: 1rem;  
 }
 .line {
   width: 100%;
@@ -76,6 +78,7 @@ button:hover {
 }
 .main-nav .right-menu {
   display: flex;
+  align-items: center
 }
 
 .main-nav ul li {
@@ -642,7 +645,7 @@ button:hover {
   justify-self: center;
   padding: 0.8rem;
   border-radius: 5%;
-  background-color: #fdfdfd;
+  background-color: #fff;
   width: 150px;
   height: 150px;
 }
@@ -712,6 +715,39 @@ button:hover {
 .shopping-cart-item .price {
   font-weight: 700;
   font-size: 2rem;
+}
+
+.empty-cart {
+  margin-top: 100px;
+}
+
+.total-price-wrapper {
+  margin-top: 50px;
+  background-color: var(--background-color);
+  padding: 0.8rem 1.3rem;
+}
+
+.btm-border {
+  margin-top: 20px;
+  border-bottom: 3px solid #ffa41b;
+}
+
+.checkout-wrapper {
+  margin-top: 20px;
+}
+
+.checkout-wrapper a {
+  display: inline-block;
+  padding: 0.8rem 1.3rem;
+  background-color: #ffa41b;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.checkout-wrapper a:hover {
+  color: #f4f4f4;
+  opacity: 0.8;
 }
 
 .show {

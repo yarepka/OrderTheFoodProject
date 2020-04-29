@@ -24,7 +24,10 @@
         </li>
         <li>
           <a href="/shopping-cart">
-            <span class="badge"><%= session.cart.totalQty %></span> Cart <i class="fas fa-shopping-cart"></i>
+            <% if(session.cart) { %>
+            <span class="badge"><%= session.cart.totalQty %></span>
+            <% } %>
+            Cart <i class="fas fa-shopping-cart"></i>
           </a>
         </li>
         <li>
@@ -41,8 +44,12 @@
         </li>
 
         <li>
-          <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
-              class="fas fa-shopping-cart"></i></a>
+          <a href="/shopping-cart">
+            <% if(session.cart) { %>
+            <span class="badge"><%= session.cart.totalQty %></span>
+            <% } %>
+            Cart <i class="fas fa-shopping-cart"></i>
+          </a>
         </li>
         <% } %>
       </ul>
@@ -67,8 +74,12 @@
                 </li>
 
                 <li>
-                  <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
-                      class="fas fa-shopping-cart"></i></a>
+                  <a href="/shopping-cart">
+                    <% if(session.cart) { %>
+                    <span class="badge"><%= session.cart.totalQty %></span>
+                    <% } %>
+                    Cart <i class="fas fa-shopping-cart"></i>
+                  </a>
                 </li>
 
                 <li>
@@ -85,8 +96,12 @@
                 </li>
 
                 <li>
-                  <a href="/shopping-cart"><span class="badge"><%= session.cart.totalQty %></span> Cart <i
-                      class="fas fa-shopping-cart"></i></a>
+                  <a href="/shopping-cart">
+                    <% if(session.cart) { %>
+                    <span class="badge"><%= session.cart.totalQty %></span>
+                    <% } %>
+                    Cart <i class="fas fa-shopping-cart"></i>
+                  </a>
                 </li>
                 <% } %>
               </ul>

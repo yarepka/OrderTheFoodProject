@@ -30,7 +30,17 @@
     </div>
     <% }); %>
   </div>
+
+  <div class="total-price-wrapper">
+    <h3>Total: <i class="fas fa-dollar-sign"></i><%= totalPrice.toFixed(2) %></h3>
+  </div>
+
+  <div class="btm-border"></div>
+
+  <div class="checkout-wrapper">
+    <a href="/checkout">Checkout</a>
+  </div>
   <% } else { %>
-  <h1>No Items in Cart</h1>
+  <h1 class="empty-cart">No Items in Cart</h1>
   <% } %>
 </div>

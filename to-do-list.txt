@@ -8,7 +8,7 @@ to-do-list:
 7. Protection (unautharized users can't get Profile) +
 8. Adding a Session Store +
 9. Cart Model +
-10. Cart Views / need to do total price at the bottom + "No Items in the cart" + work on badge
+10. Cart Views / need to do total price at the bottom + "No Items in the cart" + work on badge | +
 11. Stipe Payment Views
 12. Stripe Verifying Credit Cards
 13. Making Charges With Stripe

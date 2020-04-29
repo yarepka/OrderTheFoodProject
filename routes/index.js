@@ -3,10 +3,11 @@ const router = express.Router();
 
 // models
 const Product = require("../models/product");
-const Cart = require("../models/cart");
+const Cart = require('../models/cart');
 
 router.get("/", (req, res, next) => {
   console.log("req.user in '/' route:" + req.user);
+  console.log("req.session.cart '/'" + req.session.cart);
   // get 20 random products
   // check more on function: https://www.npmjs.com/package/mongoose-simple-random
   Product.findRandom({}, {}, { limit: 20 }, (err, products) => {
