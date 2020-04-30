@@ -5,10 +5,10 @@
     <div class="order-item">
       <% order.items.forEach(item => { %>
       <div class="item">
-        <div class="item-bacgrkound-image"
+        <div class="item-background-image"
           style="background: url('<%= item.item.imagePath %>') no-repeat center center/cover"></div>
-        <h1><%= item.item.title %></h1>
-        <p class="units"><%= item.qty %></p>
+        <h1 class="title"><%= item.item.title %></h1>
+        <p class="units">Quantity: <%= item.qty %></p>
         <p class="price"><i class="fas fa-dollar-sign"></i><%= item.price.toFixed(2) %></p>
       </div>
       <% }); %>

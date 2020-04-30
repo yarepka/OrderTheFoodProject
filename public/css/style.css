@@ -840,11 +840,29 @@ button:hover {
   font-weight: 700;
 }
 
-.item-bacgrkound-image {
+.item-background-image {
   width: 50px;
   height: 50px;
   background: url("https://source.unsplash.com/daily") no-repeat center center/cover;
   border-radius: 10px;
+}
+
+/* .item-bacgrkound-image */
+
+.item-background-image {
+  grid-area: img;
+}
+
+.order-item .item .title {
+  grid-area: title;
+}
+
+.order-item .item .units {
+  grid-area: units;
+}
+
+.order-item .item .units {
+  grid-area: price;
 }
 
 .show {
@@ -971,6 +989,41 @@ button:hover {
 
   #signin-container, #signup-container {
     padding: 1.5rem;
+  }
+
+  .order-item .item {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+    "img img"
+    "title title"
+    "units price";
+  }
+
+  .order-items .main-title {
+    text-align: center;
+  }
+
+  .order-item .item .title {
+    margin-bottom: 25px;
+  }
+
+  .order-item .item .price {
+    justify-self: start;
+  }
+
+  .order-item .item .units {
+    justify-self: end;
+  }
+
+  .order-item .item .title {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .item-background-image {
+    width: 200px;
+    height: 200px;
+    justify-self: center;
   }
 }
 
