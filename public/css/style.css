@@ -521,6 +521,11 @@ button:hover {
   border-radius: 5px;
 }
 
+.input:focus {
+  outline: none;
+  border: 2px solid coral;
+}
+
 .error {
   padding-left: 0.8rem;
   border: 2px solid #ebccd1;
