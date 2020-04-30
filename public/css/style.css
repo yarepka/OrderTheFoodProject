@@ -825,7 +825,7 @@ button:hover {
 
 .units {
   font-size: 1.5rem;
-  font-weight: 700;order-items
+  font-weight: 700;
 }
 
 .order-item .item .price {
@@ -845,6 +845,10 @@ button:hover {
   height: 50px;
   background: url("https://source.unsplash.com/daily") no-repeat center center/cover;
   border-radius: 10px;
+}
+
+.order-item .item .title {
+  padding-left: 0.8rem;
 }
 
 .show {
@@ -944,6 +948,14 @@ button:hover {
     "pic btn";
   }
 
+  .order-item .item .units {
+    justify-items: start;
+  }
+  
+  .order-item .item .price {
+    grid-area: price;
+  }
+
   #checkout-container {
     margin-top: 300px;
     padding: 2rem;
@@ -973,6 +985,23 @@ button:hover {
     padding: 1.5rem;
   }
 
+  
+  .order-item .item .item-background-image {
+    grid-area: img;
+  }
+
+  .order-item .item .title {
+    grid-area: title;
+  }
+
+  .order-item .item .units {
+    grid-area: units;
+  }
+
+  .order-item .item .price {
+    grid-area: price;
+  }
+
   .order-item .item {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
@@ -990,11 +1019,11 @@ button:hover {
   }
 
   .order-item .item .price {
-    justify-self: start;
+    justify-self: end;
   }
 
   .order-item .item .units {
-    justify-self: end;
+    justify-self: start;
   }
 
   .order-item .item .title {
