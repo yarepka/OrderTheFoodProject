@@ -9,12 +9,12 @@ to-do-list:
 8. Adding a Session Store +
 9. Cart Model +
 10. Cart Views / need to do total price at the bottom + "No Items in the cart" + work on badge | +
-11. Stipe Payment Views
-12. Stripe Verifying Credit Cards
-13. Making Charges With Stripe
-14. Storing Orders in the Database
-15. Forcing User Login if checkout
-16. Displayuing Orders in the User Profile
+11. Stipe Payment Views +
+12. Stripe Verifying Credit Cards +
+13. Making Charges With Stripe +
+14. Storing Orders in the Database +
+15. Forcing User Login if checkout +
+16. Displayuing Orders in the User Profile + Work more on Mobile Version.
 17. Improve unautharized
 18. Add a secret admin login
 19. Admins can add new products
