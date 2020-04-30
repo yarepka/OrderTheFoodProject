@@ -4,15 +4,17 @@ const router = express.Router();
 // models
 const Product = require("../models/product");
 const Cart = require('../models/cart');
+const Order = require("../models/order");
 
 router.get("/", (req, res, next) => {
-  console.log("req.user in '/' route:" + req.user);
-  console.log("req.session.cart '/'" + req.session.cart);
+  console.log("req.user in '/' route: " + req.user);
+  console.log("req.session.cart '/': " + req.session.cart);
   // get 20 random products
   // check more on function: https://www.npmjs.com/package/mongoose-simple-random
   Product.findRandom({}, {}, { limit: 20 }, (err, products) => {
     if (!err) {
       if (products.length > 0) {
+        req.session.typeUrl = req.url;
         res.render("restaurant/index", { products: products, mainImage: "img/types/all.jpg" });
       } else {
         console.log("Your products database is empty.");
@@ -24,6 +26,7 @@ router.get("/", (req, res, next) => {
 })
 
 router.get("/add-to-cart/:id", (req, res, next) => {
+  console.log("req.session.typeUrl: " + req.session.typeUrl);
   // we need to have cart object which will have products.
   // Cart object then will be stored in the session
   var productId = req.params.id;
@@ -43,7 +46,7 @@ router.get("/add-to-cart/:id", (req, res, next) => {
     // save with each response we send back
     req.session.cart = cart;
     console.log(req.session.cart);
-    res.redirect("/");
+    res.redirect(req.session.typeUrl);
   });
 });
 
@@ -56,9 +59,9 @@ router.get("/shopping-cart", (req, res, next) => {
   }
 
   // cart exists
-  var cart = new Cart(req.session.cart);
+  const cart = new Cart(req.session.cart);
   // get items(products) of current cart
-  var products = cart.generateArray();
+  const products = cart.generateArray();
   res.render("restaurant/shopping-cart", {
     products: products,
     totalPrice: cart.totalPrice,
@@ -95,8 +98,79 @@ router.get("/increase/:id", (req, res, next) => {
   res.redirect("/shopping-cart");
 });
 
-router.get("/checkout", (req, res, next) => {
-  res.render("restaurant/checkout");
+router.get("/checkout", isLoggedIn, (req, res, next) => {
+  // check if there is cart for current session
+
+  // no cart
+  if (!req.session.cart) {
+    return res.redirect("/shopping-cart");
+  }
+
+  // cart exists
+  var cart = new Cart(req.session.cart);
+  var errMsg = req.flash("error")[0];
+  res.render("restaurant/checkout", {
+    total: cart.totalPrice,
+    errMsg: errMsg,
+    noError: !errMsg,
+  });
+});
+
+router.post("/checkout", isLoggedIn, (req, res, next) => {
+  // check if there is cart for current session
+
+  // no cart
+  if (!req.session.cart) {
+    return res.redirect("/shopping-cart");
+  }
+
+  // cart exists
+  var cart = new Cart(req.session.cart);
+
+  // var stripe = require("stripe")("sk_test_y1md8wv7EObszNHcbkfV6Ch400a9IXBDdE");
+
+  var stripe = require("stripe")(process.env.SECRET_KEY);
+
+  stripe.charges.create(
+    {
+      amount: Math.round(cart.totalPrice.toFixed(2) * 100), // cents
+      currency: "usd",
+      source: req.body.stripeToken,
+      description: "Test Charge",
+    },
+    (err, charge) => {
+      if (err) {
+        req.flash("error", err.message);
+        return res.redirect("/checkout");
+      }
+
+      var order = new Order({
+        // remember passport places user object on the request
+        // and we are able to access it
+        user: req.user,
+        cart: cart,
+        address: req.body.address,
+        name: req.body.name,
+        paymentId: charge.id,
+      });
+
+      order.save((err, result) => {
+        // good practise to check for errors here
+        req.flash("success", "Succesfully bought product!");
+        req.session.cart = null;
+        res.redirect("/shopping-cart");
+      });
+    }
+  );
 });
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  // add new field = url which user tried to access (checkout)
+  req.session.oldUrl = req.url;
+  res.redirect("/user/signin");
+}

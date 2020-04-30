@@ -58,7 +58,13 @@ router.post(
   }),
   (req, res, next) => {
     // will be called if no failure
-    res.redirect("/user/profile");
+    if (req.session.oldUrl) {
+      var oldUrl = req.session.oldUrl;
+      req.session.oldUrl = null;
+      res.redirect(oldUrl);
+    } else {
+      res.redirect("/user/profile");
+    }
   }
 );
 
@@ -69,8 +75,14 @@ router.post(
     failureFlash: true,
   }),
   (req, res, next) => {
-    console.log(req.user);
-    res.redirect("/user/profile");
+    // will be called if no failure
+    if (req.session.oldUrl) {
+      var oldUrl = req.session.oldUrl;
+      req.session.oldUrl = null;
+      res.redirect(oldUrl);
+    } else {
+      res.redirect("/user/profile");
+    }
   }
 );
 

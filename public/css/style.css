@@ -536,6 +536,15 @@ button:hover {
   padding-bottom: 6px;
 }
 
+.success {
+  padding-left: 0.8rem;
+  border: 2px solid #c3e6cb;
+  border-radius: 5px;
+  margin-bottom:10px;
+  background-color: #d4edda;
+  color: #155724;
+}
+
 /* signin form */
 #signin-form, #signup-form, #checkout-form {
   height: 100vh;
@@ -735,6 +744,7 @@ button:hover {
 
 .checkout-wrapper {
   margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 .checkout-wrapper a {
@@ -779,8 +789,17 @@ button:hover {
   background:url("../img/checkout.jpg") no-repeat center center/cover;
 }
 
+#checkout-container .error {
+  max-width: 260px;
+  overflow: hidden;
+}
+
 .show {
   display: block !important;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Media queries */

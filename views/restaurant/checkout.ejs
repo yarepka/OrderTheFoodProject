@@ -1,48 +1,55 @@
 <div id="background-image-checkout" class="img"></div>
-<form id="checkout-form">
+<form action="/checkout" method="post" id="checkout-form">
 
   <div id="checkout-container">
     <h1>Checkout</h1>
 
     <div id="checkout-total-price-wrapper">
-      <p>Your Total: 55$</p>
+      <p>Your Total: <i class="fas fa-dollar-sign"></i><%= total.toFixed(2) %></p>
+    </div>
+
+    <div id="charge-error" class="error <% if(noError) { %> hidden <% } %>">
+      <p><%= errMsg %></p>
     </div>
 
     <div id="checkout-name-wrapper">
       <label>Name</label>
-      <input type="text" class="input" placeholder="John">
+      <input type="text" id="name" required name="name" class="input" placeholder="John">
     </div>
 
     <div id="checkout-address-wrapper">
       <label>Address</label>
-      <input type="text" class="input" placeholder="San Francisco CA 94116">
+      <input type="text" id="address" class="input" required name="address" placeholder="San Francisco CA 94116">
     </div>
 
     <div id="checkout-card-holder-name-wrapper">
       <label>Card Holder Name</label>
-      <input type="text" class="input" placeholder="John Smith">
+      <input type="text" id="card-name" class="input" placeholder="John Smith" required>
     </div>
 
     <div id="checkout-credit-card-number-wrapper">
       <label>Credit Card Number</label>
-      <input type="text" class="input" placeholder="4242 4242 4242 4242">
+      <input type="text" id="card-number" class="input" placeholder="4242 4242 4242 4242" required>
     </div>
 
     <div id="checkout-expiration-month-wrapper">
       <label>Expiration Month</label>
-      <input type="text" class="input" placeholder="12">
+      <input type="text" id="card-expiry-month" class="input" placeholder="12" required>
     </div>
 
     <div id="checkout-expiration-year-wrapper">
       <label>Expiration Year</label>
-      <input type="text" class="input" placeholder="2025">
+      <input type="text" id="card-expiry-year" class="input" placeholder="2025" required>
     </div>
 
     <div id="checkout-cvc-wrapper">
-      <label>Expiration Year</label>
-      <input type="text" class="input" placeholder="333">
+      <label>CVC</label>
+      <input type="text" id="card-cvc" class="input" placeholder="333" required>
     </div>
 
     <button type="submit">Buy Now</button>
   </div>
 </form>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="js/checkout.js"></script>
