@@ -1,1 +1,21 @@
-<h1>Here will be profile soon.</h1>
+<div class="container">
+  <div class="order-items">
+    <h1 class="main-title">My Orders:</h1>
+    <% orders.forEach(order => { %>
+    <div class="order-item">
+      <% order.items.forEach(item => { %>
+      <div class="item">
+        <div class="item-bacgrkound-image"
+          style="background: url('<%= item.item.imagePath %>') no-repeat center center/cover"></div>
+        <h1><%= item.item.title %></h1>
+        <p class="units"><%= item.qty %></p>
+        <p class="price"><i class="fas fa-dollar-sign"></i><%= item.price.toFixed(2) %></p>
+      </div>
+      <% }); %>
+      <div class="order-item-total-price">
+        <p>Total Price: <i class="fas fa-dollar-sign"></i><%= order.cart.totalPrice.toFixed(2) %></p>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>

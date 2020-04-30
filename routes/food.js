@@ -11,7 +11,7 @@ router.get("/:foodType", (req, res, next) => {
   Product.find({ type: foodType }, (err, products) => {
     if (!err) {
       if (products.length > 0) {
-        req.session.typeUrl = "/food/" + req.url;
+        req.session.typeUrl = "/food" + req.url;
         res.render("restaurant/index", { products: products, mainImage: "img/types/" + foodType + ".jpg" })
       } else {
         console.log("There is no items with '" + foodType + "' food type");
