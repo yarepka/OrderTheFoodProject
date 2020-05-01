@@ -14,7 +14,8 @@ to-do-list:
 13. Making Charges With Stripe +
 14. Storing Orders in the Database +
 15. Forcing User Login if checkout +
-16. Displayuing Orders in the User Profile + Work more on Mobile Version.
+16. Displaying Orders in the User Profile + 
+16.1 Work more on Mobile Version. Add date to orders.
 17. Improve unautharized
 18. Add a secret admin login
 19. Admins can add new products
@@ -22,6 +23,10 @@ to-do-list:
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
 22. Wait untill images will loade before showing the page: https://stackoverflow.com/questions/544993/official-way-to-ask-jquery-wait-for-all-images-to-load-before-executing-somethin
+23. Need to fix position on reload, it should stay the same as
+before reload.
+24. Deprecated method fix in /food/:foodType route
+25. (Menu Closing) pops up on reload
 
 routes:
 "/" will be show all types of products

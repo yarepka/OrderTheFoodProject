@@ -9,9 +9,9 @@
       <div class="title-wrapper">
         <h3>
           <% if(product.item.title.length > 20) { %>
-          <a href="#"><%= product.item.title.substring(0, 20).trim() %>...</a>
+          <a href="food/info/<%= product.item._id %>"><%= product.item.title.substring(0, 20).trim() %>...</a>
           <% } else { %>
-          <a href="#"><%= product.item.title %></a>
+          <a href="food/info/<%= product.item._id %>"><%= product.item.title %></a>
           <% } %>
         </h3>
       </div>

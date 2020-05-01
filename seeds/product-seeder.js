@@ -10,7 +10,7 @@ var products = [
   // Burgers
   new Product({
     title: "Bacon Cheeseburger",
-    description: "Tasty thing",
+    description: "A cheeseburger is a hamburger topped with cheese. Traditionally, the slice of cheese is placed on top of the meat patty, but the burger can include variations in structure, ingredients and composition. The cheese is usually added to the cooking hamburger patty shortly before serving, which allows the cheese to melt. As with other hamburgers, a cheeseburger may include toppings, such as lettuce, tomato, onion, pickles, bacon, mayonnaise, ketchup, mustard or other toppings.",
     price: 12.55,
     type: ["Burgers", "American"],
     imagePath: "./img/burgers/baconCheeseburger.jpg",
@@ -31,7 +31,7 @@ var products = [
   }),
   new Product({
     title: "Cheeseburger",
-    description: "Kind of cool",
+    description: "A cheeseburger is a hamburger topped with cheese. Traditionally, the slice of cheese is placed on top of the meat patty, but the burger can include variations in structure, ingredients and composition. The cheese is usually added to the cooking hamburger patty shortly before serving, which allows the cheese to melt. As with other hamburgers, a cheeseburger may include toppings, such as lettuce, tomato, onion, pickles, bacon, mayonnaise, ketchup, mustard or other toppings.",
     price: 9.75,
     type: ["Burgers", "American"],
     imagePath: "./img/burgers/cheeseburger.jpg",

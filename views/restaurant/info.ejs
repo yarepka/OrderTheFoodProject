@@ -1,0 +1,14 @@
+<div class="container">
+  <div id="product-info-item">
+    <div class="product-info-img" style="background: url('<%= product.imagePath %>') no-repeat center center/cover">
+    </div>
+    <div class="product-info-description">
+      <h3><%= product.title %></h3>
+      <p class="description"><%= product.description %></p>
+    </div>
+    <div class="product-info-price">
+      <p class="price">Price: <i class="fas fa-dollar-sign"></i><%= product.price %></p>
+      <a class="btn" href="/add-to-cart/<%= product._id %>">Add To Cart</a>
+    </div>
+  </div>
+</div>

@@ -624,6 +624,11 @@ button:hover {
   background: var(--background-color);
 }
 
+.shopping-cart-item .title-wrapper a:hover {
+  transition: all 0.5s ease-in-out;
+  color: #ffa41b;
+}
+
 .shopping-cart-picture {
   width: 150px;
   height: 150px;
@@ -740,6 +745,7 @@ button:hover {
   margin-top: 50px;
   background-color: var(--background-color);
   padding: 0.8rem 1.3rem;
+  font-size: 1.5rem;
 }
 
 .btm-border {
@@ -856,6 +862,56 @@ button:hover {
   padding-left: 0.8rem;
 }
 
+/* Info */
+#product-info-item {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  line-height: 1.4;
+}
+
+#product-info-item .product-info-img {
+  background: url("../img/burgers/blackLabelBurger.jpg") no-repeat center center/cover;
+  min-height: 250px;
+  min-width: 250px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+#product-info-item .product-info-description {
+  padding-left: 1.3rem;
+  text-align: justify;
+  font-size: 1.2rem;
+  align-self: center;
+}
+
+#product-info-item .product-info-price {
+  align-self: center;
+  justify-content: center;
+  background: rgb(248, 252, 250);
+  text-align: center;
+}
+
+#product-info-item .product-info-price .price {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#product-info-item .product-info-price .btn {
+  text-align: center;
+  background-color: var(--button-oragne-color);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.8rem 1.3rem;
+  border-radius: 5px;
+}
+
 .show {
   display: block !important;
 }
@@ -909,6 +965,37 @@ button:hover {
 
   .food-nav ul li:not(:last-child) a {
     margin-bottom: 10px;
+  }
+}
+
+@media(max-width: 768px) {
+  #product-info-item {
+    grid-template-columns: 1fr;
+  }
+
+  #product-info-item .product-info-img {
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+  }
+
+  #product-info-item .product-info-price {
+    margin-top: 10px;
+  }
+
+  #product-info-item .product-info-price .btn {
+    display: inline-block;
+    width: 100%;
+  }
+
+  #product-info-item .product-info-description {
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  #product-info-item .product-info-description h3 {
+    text-align: center;
+    margin-bottom: 20px;
   }
 }
 

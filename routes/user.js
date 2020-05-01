@@ -30,7 +30,12 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
       order.items = cart.generateArray();
     });
 
-    res.render("user/profile", { orders: orders });
+    let ordersReversed = [];
+    for (let i = orders.length - 1, j = 0; i >= 0; i--, j++) {
+      ordersReversed[j] = orders[i];
+    }
+
+    res.render("user/profile", { orders: ordersReversed });
   });
 });
 

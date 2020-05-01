@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Showcase -->
   <header class="showcase img" style="background: url('<%= mainImage %>') no-repeat center center/cover">
-    <h1>Fast delivery to Moscow.</h1>
+    <h1>Fast Delivery To Any Place.</h1>
   </header>
 
   <!-- Food-menu -->
@@ -33,8 +33,8 @@
         </div>
         <h3 class="food-name"><%= product.title %></h3>
         <p class="food-price-add-container">
-          <a class="price"><i class="fas fa-dollar-sign"></i><%= product.price.toFixed(2) %></a>
-          <a class="info" href="#">Info</a>
+          <span class="price"><i class="fas fa-dollar-sign"></i><%= product.price.toFixed(2) %></span>
+          <a class="info" href="/food/info/<%= product._id %>">Info</a>
           <a class="plus" href="/add-to-cart/<%= product._id %>">+</a>
         </p>
       </div>
