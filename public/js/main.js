@@ -4,6 +4,26 @@ let currentYear = new Date().getFullYear();
 let toggler = document.querySelector(".toggler");
 let buttons = document.querySelectorAll("a");
 
+// window.addEventListener('scroll', function () {
+//   //When scroll change, you save it on localStorage.
+//   localStorage.setItem('scrollPosition', window.scrollY);
+// }, false);
+
+// window.addEventListener('load', function () {
+//   if (localStorage.getItem('scrollPosition') !== null)
+//     window.scrollTo(0, localStorage.getItem('scrollPosition'));
+// }, false);
+
+$(window).scroll(function () {
+  sessionStorage.scrollTop = $(this).scrollTop();
+});
+
+$(window).ready(function () {
+  if (sessionStorage.scrollTop != "undefined") {
+    $(window).scrollTop(sessionStorage.scrollTop);
+  }
+});
+
 moreBtn.addEventListener("click", (e) => {
   let moreContent = document.querySelector(".more-content");
   console.log(moreContent);
