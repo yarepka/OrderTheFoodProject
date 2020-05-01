@@ -3,7 +3,6 @@ let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
 let toggler = document.querySelector(".toggler");
 let buttons = document.querySelectorAll("a");
-let mobileLocationBtn = document.querySelector(".mobile-location");
 
 moreBtn.addEventListener("click", (e) => {
   let moreContent = document.querySelector(".more-content");
@@ -33,14 +32,6 @@ window.addEventListener("resize", (e) => {
       mobileLocationBtn.classList.toggle("active");
     }
   }
-});
-
-mobileLocationBtn.addEventListener("click", () => {
-  locationItems = document.querySelectorAll(".location-item");
-  locationItems.forEach(item => {
-    item.classList.toggle("show");
-  });
-  mobileLocationBtn.classList.toggle("active");
 });
 
 // set current year
