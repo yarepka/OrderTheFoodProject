@@ -38,7 +38,7 @@ var products = [
   }),
   new Product({
     title: "Double Animal Style",
-    description: "Kind of cool",
+    description: "A Double-Double in In-N-Out vernacular means double meat, double cheese. There's nothing 'secret' about that. The secret part is 'animal style'. An Animal Style Burger includes hand leafed lettuce, tomato, a mustard cooked beef patty, pickles, extra sauce, and grilled onions. Oh... the grilled onions! The best part of this burger! ",
     price: 12.15,
     type: ["Burgers", "American"],
     imagePath: "./img/burgers/doubleAnimalStyle.jpg",

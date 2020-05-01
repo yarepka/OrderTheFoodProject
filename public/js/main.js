@@ -1,4 +1,3 @@
-let locationBtn = document.querySelector(".location");
 let moreBtn = document.querySelector(".more-btn");
 let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
@@ -6,13 +5,9 @@ let toggler = document.querySelector(".toggler");
 let buttons = document.querySelectorAll("a");
 let mobileLocationBtn = document.querySelector(".mobile-location");
 
-locationBtn.addEventListener("click", () => {
-  document.querySelector(".dropdown-content").classList.toggle("show");
-  locationBtn.classList.toggle("active");
-});
-
 moreBtn.addEventListener("click", (e) => {
   let moreContent = document.querySelector(".more-content");
+  console.log(moreContent);
   moreContent.classList.toggle("show");
   if (moreContent.classList.contains("show")) {
     moreIcon.classList.remove("fa-angle-down");

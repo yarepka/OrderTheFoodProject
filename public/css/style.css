@@ -824,7 +824,6 @@ button:hover {
 .order-item .item {
   display: grid;
   padding: 0.8rem 1.3rem;
-  border-bottom: 2px solid #21bf73;
   grid-template-columns: 0.1fr 1fr 0.25fr 0.25fr;
   align-items: center;
   margin-bottom: 5px;
@@ -845,10 +844,16 @@ button:hover {
   font-weight: 700;
 }
 
+.order-item .item .link:hover {
+  transition: all 0.25s ease-in-out;
+  color: var(--button-oragne-color);
+}
+
 .order-item-total-price {
   padding: 0.8rem;
   font-size: 1.5rem;
   font-weight: 700;
+  border-top: 2px solid #21bf73;
 }
 
 .item-background-image {
@@ -912,6 +917,15 @@ button:hover {
   border-radius: 5px;
 }
 
+.info-background-img {
+  position: fixed;
+  top: 0;
+  background: url("../img/info.jpg") no-repeat center center/cover;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
 .show {
   display: block !important;
 }
@@ -971,6 +985,10 @@ button:hover {
 @media(max-width: 768px) {
   #product-info-item {
     grid-template-columns: 1fr;
+  }
+
+  .order-items .item {
+    grid-template-columns: 0.1fr 1fr 0.5fr 0.4fr;
   }
 
   #product-info-item .product-info-img {
@@ -1039,7 +1057,9 @@ button:hover {
     "price -"
     "pic btn";
   }
-
+  .order-item .item {
+    margin-bottom: 50px;
+  }
   .order-item .item .units {
     justify-items: start;
   }
@@ -1082,7 +1102,7 @@ button:hover {
     grid-area: img;
   }
 
-  .order-item .item .title {
+  .order-item .item .link {
     grid-area: title;
   }
 
