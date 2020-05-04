@@ -7,7 +7,7 @@ router.get("/panel", (req, res, next) => {
   Product.find({}, (err, products) => {
     if (!err) {
       if (products.length > 0) {
-        res.render("admin/panel", { products: products });
+        res.render("admin/panel", { products: products.reverse() });
       } else {
         console.log("Products collection is empty");
       }

@@ -18,12 +18,14 @@ to-do-list:
 16.1 Work more on Mobile Version. Add date to orders. 
 16.2 Admin panel where you are able to add, delete, update, etc.
 17. Improve unautharized
-18. Create Admin panel, amin panel will contain:
-  1. Amount of New users
-  2. Amount Today's Sales
-  3. Earning
-  4. List of Products which will be editable
-  5. Add new product page
+18. Create Admin panel, admin panel will contain: +
+  1. Amount of New users +
+  2. Amount Today's Sales +
+  3. Earning +
+  4. List of Products which will be editable +
+  5. Add new product page +
+19. Need to add date to order, product, user models
+20. Need to Update product-seeder
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
 22. Wait untill images will loade before showing the page: https://stackoverflow.com/questions/544993/official-way-to-ask-jquery-wait-for-all-images-to-load-before-executing-somethin
