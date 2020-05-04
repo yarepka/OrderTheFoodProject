@@ -1020,35 +1020,36 @@ button:hover {
 }
 
 /* Add product */
-.add-product-container {
+.add-product-container, .update-product-container {
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
-.add-product-container input {
+.add-product-container input, .update-product-container input {
   display: block;
 }
 
-.add-product-container form {
+.add-product-container form, .update-product-container form {
   padding: 2rem;
   background: var(--background-color);
   border-radius: 10px;
 }
 
-.add-product-container form h2 {
+.add-product-container form h2, .update-product-container form h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.add-product-container form label {
+.add-product-container form label, .update-product-container form label {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.add-product-container form input[type=file] {
+.add-product-container form input[type=file],
+.update-product-container form input[type=file] {
   display: block;
   margin-bottom: 20px;
 }
@@ -1062,13 +1063,15 @@ button:hover {
   border-radius: 5px;
 }
 
-.add-product-container form input[type='file'] {
+.add-product-container form input[type='file'],
+.update-product-container form input[type='file']{
   width:300px;
   height:40px;
   opacity:0
 }
 
-.add-product-container form #val {
+.add-product-container form #val, 
+.update-product-container form #val {
   max-width: 300px;
   height:50px;
   position: absolute;
@@ -1081,14 +1084,16 @@ button:hover {
   overflow: hidden;
 }
 
-.add-product-container form .description {
+.add-product-container form .description, 
+.update-product-container form .description {
   height: 60px;
   font-family: Arial, Helvetica, sans-serif;
   padding-top: 0.4rem;
   font-size: 1.3rem;
 }
 
-.add-product-container form #button {
+.add-product-container form #button, 
+.update-product-container form #button {
   border-top-right-radius: 1px;
   border-bottom-right-radius: 1px;
   cursor: pointer;
@@ -1105,12 +1110,14 @@ button:hover {
   justify-content: center;
 }
 
-.add-product-container form #button:hover {
+.add-product-container form #button:hover, 
+.update-product-container form #button:hover {
   background-color: #f4f4f4;
   color: #333;
 }
 
-.add-product-container form button {
+.add-product-container form button,
+.update-product-container form button {
   display: block;
   margin-top: 20px;
   width: 100%;

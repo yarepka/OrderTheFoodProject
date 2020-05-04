@@ -1,7 +1,28 @@
 <div class="container">
   <div class="update-product-container">
     <form action="/admin/update-product" method="POST">
-      
+      <h2>Update Product</h2>
+
+      <label>Title</label>
+      <input class="input" type="text" name="title" value="<%= product.title %>" />
+
+      <label>Description</label>
+      <textarea class="input description" name="description"><%= product.description %></textarea>
+
+      <label>Price</label>
+      <input class="input" type="text" name="price" value="<%= product.price %>">
+
+      <label>Type(s)</label>
+      <input class="input" type="text" name="type"
+        value="<% product.type.forEach((type,index) => { %><%= type %><% if(index != product.type.length - 1) { %>, <% } %><% }) %>">
+
+      <label>Image</label>
+      <div class="image-input-wrapper">
+        <input type="file" name="img"> <span id="val"></span>
+        <span id="button">Select File</span>
+      </div>
+
+      <button class="submit">Update</button>
     </form>
   </div>
 </div>

@@ -30,39 +30,16 @@
       <a href="/admin/add-product">Add New Product</a>
     </div>
 
+    <% products.forEach(product => { %>
     <div class="box">
-      <div class="background-image"></div>
-      <h1 class="title">Title</h1>
-      <a class="update">Update</a>
-      <a class="delete">Delete</a>
-    </div>
+      <div class="background-image" style="background: url('<%= product.imagePath %>') no-repeat center center/cover">
+      </div>
 
-    <div class="box">
-      <div class="background-image"></div>
-      <h1 class="title">Title</h1>
-      <a class="update">Update</a>
-      <a class="delete">Delete</a>
+      <h1 class="title"><%= product.title%></h1>
+      <a href="/admin/update-product/<%= product._id %>" class="update">Update</a>
+      <a href="/admin/delete-product/<%= product._id %>" class="delete">Delete</a>
     </div>
+    <% }) %>
 
-    <div class="box">
-      <div class="background-image"></div>
-      <h1 class="title">Title</h1>
-      <a class="update">Update</a>
-      <a class="delete">Delete</a>
-    </div>
-
-    <div class="box">
-      <div class="background-image"></div>
-      <h1 class="title">Title</h1>
-      <a class="update">Update</a>
-      <a class="delete">Delete</a>
-    </div>
-
-    <div class="box">
-      <div class="background-image"></div>
-      <h1 class="title">Title</h1>
-      <a class="update">Update</a>
-      <a class="delete">Delete</a>
-    </div>
   </section>
 </div>
