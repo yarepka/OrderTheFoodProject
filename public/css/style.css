@@ -42,6 +42,10 @@ button {
   font-size: 1.4rem;
 }
 
+label {
+  display: block;
+}
+
 button:hover {
   cursor: pointer;
   transition: all 0.5s ease-in-out;
@@ -484,12 +488,13 @@ button:hover {
 /* Global for forms */
 .input {
   display: inline-block;
+  width: 100%;
   height: 40px;
   max-width: 300px;
   margin-bottom: 10px;
   font-size: 1.3rem;
   background-color: var(--background-color);
-  border: 2px solid #ddd;
+  border: 2px solid #333;
   padding-left: 0.8rem;
   color: var(--text-color);
   border-radius: 5px;
@@ -531,6 +536,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
   
 }
 
@@ -566,6 +572,7 @@ button:hover {
   background-color: var(--background-color);
   padding: 4rem 4rem;
   border-radius: 5%;
+  border: 5px solid #333;
   z-index:1;
 }
 
@@ -932,7 +939,12 @@ button:hover {
 }
 
 #admin-top .box .content p.number {
-  font-weight: 700;
+  font-weight: 1000;
+}
+
+#admin-top .box .content p:last-child {
+  font-weight: 575;
+  color: #21bf73;
 }
 
 #admin-top .box .main-icon {
@@ -1005,6 +1017,104 @@ button:hover {
 
 #admin-panel .box .title {
   flex:2;
+}
+
+/* Add product */
+.add-product-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-product-container input {
+  display: block;
+}
+
+.add-product-container form {
+  padding: 2rem;
+  background: var(--background-color);
+  border-radius: 10px;
+}
+
+.add-product-container form h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-product-container form label {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.add-product-container form input[type=file] {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.image-input-wrapper {
+  max-width: 300px;
+  height: 40px;
+  background-color: #fff;
+  position:relative;
+  border: 2px solid #222831;
+  border-radius: 5px;
+}
+
+.add-product-container form input[type='file'] {
+  width:300px;
+  height:40px;
+  opacity:0
+}
+
+.add-product-container form #val {
+  max-width: 300px;
+  height:50px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  font-size: 1.5rem;
+  line-height: 25px;
+  text-indent: 10px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.add-product-container form .description {
+  height: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 0.4rem;
+  font-size: 1.3rem;
+}
+
+.add-product-container form #button {
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  cursor: pointer;
+  display: flex;
+  width: 90px;
+  background-color: #333;
+  height: 36px;
+  color: #fff;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 1.1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-product-container form #button:hover {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.add-product-container form button {
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .show {
@@ -1282,6 +1392,12 @@ button:hover {
     width: 200px;
     height: 200px;
     justify-self: center;
+  }
+}
+
+@media (max-height: 700px) {
+  .add-product-container {
+    height: 140vh;
   }
 }
 

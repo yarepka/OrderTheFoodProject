@@ -24,6 +24,14 @@ $(window).ready(function () {
   }
 });
 
+$('.add-product-container form #button').click(function () {
+  $(".add-product-container form input[type='file']").trigger('click');
+})
+
+$(".add-product-container form input[type='file']").change(function () {
+  $('.add-product-container form #val').text(this.value.replace(/C:\\fakepath\\/i, ''))
+})
+
 moreBtn.addEventListener("click", (e) => {
   let moreContent = document.querySelector(".more-content");
   console.log(moreContent);
