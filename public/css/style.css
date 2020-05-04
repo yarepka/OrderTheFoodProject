@@ -900,6 +900,113 @@ button:hover {
   z-index: -1;
 }
 
+/* Admin Panel */
+#admin-top {
+  display: grid;
+  margin-top: 100px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+#admin-top .box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--background-color);
+  border: 5px solid #333;
+  border-radius: 10px;
+  padding: 1rem;
+  height: 150px;
+}
+
+#admin-top .box .main-icon {
+  justify-self: center;
+}
+
+#admin-top .box .main-icon, #admin-top .box .content {
+  align-self: center;
+}
+
+#admin-top .box .content p {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#admin-top .box .content p.number {
+  font-weight: 700;
+}
+
+#admin-top .box .main-icon {
+  color: #222831;
+}
+
+#admin-panel {
+  margin-top: 40px;
+  background-color: var(--background-color);
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+#admin-panel .box {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#admin-panel .first-line {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  border-bottom: 5px solid #333;
+}
+
+#admin-panel .box a, #admin-panel .first-line a {
+  display: inline-block;
+  padding: 0.8rem 1.3rem;
+  margin-left: 10px;
+  border-radius: 10px;
+  font-weight: 550;
+}
+
+#admin-panel .box .title {
+  padding-left: 10px;
+}
+
+#admin-panel .first-line a {
+  background-color: #333;
+  color: #fff;
+  padding: 0.8rem 2rem;
+}
+
+#admin-panel .box a:hover,
+#admin-panel .first-line a:hover {
+  opacity: 0.8;
+  color: #f4f4f4;
+}
+
+#admin-panel .box .update {
+  color: #fff;
+  background-color: #21bf73;
+}
+
+#admin-panel .box .delete {
+  color: #fff;
+  background-color: #a94442
+}
+
+#admin-panel .box .background-image {
+  height: 50px;
+  width: 50px;
+  background: url("../img/burgers/lePigeonBurger.jpg") no-repeat center center/cover;
+  border-radius: 10px;
+}
+
+#admin-panel .box .title {
+  flex:2;
+}
+
 .show {
   display: block !important;
 }
@@ -961,6 +1068,55 @@ button:hover {
     grid-template-columns: 1fr;
   }
 
+  #admin-panel {
+    padding: 0.8rem;
+  }
+
+  #admin-panel .first-line {
+    display: block;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #admin-panel .first-line a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  #admin-panel .box {
+    flex-direction: column;
+    border: 5px solid #333;
+    border-radius: 10px;
+    padding: 0.8rem;
+    margin-bottom: 100px;
+  }
+
+  #admin-panel .box a {
+    margin: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #admin-panel .box .background-image {
+    width: 100%;
+    height: 300px;
+  }
+
+  #admin-panel .box .title {
+    padding: 0.8rem;
+  }
+
+  #admin-panel .box .background-image, #admin-panel .box .title  {
+    margin-bottom: 20px
+  }
+  #admin-panel .box .background-image {
+    justify-content: center;;
+  }
+
   .order-items .item {
     grid-template-columns: 0.1fr 1fr 0.5fr 0.4fr;
   }
@@ -989,6 +1145,7 @@ button:hover {
     text-align: center;
     margin-bottom: 20px;
   }
+
 }
 
 @media (max-width: 700px) {
@@ -1051,6 +1208,10 @@ button:hover {
 @media (max-width: 700px){
   .title-wrapper {
     padding-left: 0.7rem;
+  }
+
+  #admin-top {
+    grid-template-columns: 1fr;
   }
 
   .buttons-wrapper{

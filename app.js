@@ -30,6 +30,7 @@ const PORT = process.env.PORT || 3000;
 const indexRouter = require("./routes/index");
 const foodRouter = require("./routes/food");
 const userRouter = require("./routes/user");
+const adminRouter = require("./routes/admin");
 require("./config/passport");
 
 const app = express();
@@ -96,6 +97,7 @@ app.use((req, res, next) => {
 // ORDER matters
 app.use("/user", userRouter);
 app.use("/food", foodRouter);
+app.use("/admin", adminRouter);
 app.use("/", indexRouter);
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

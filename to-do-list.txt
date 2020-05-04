@@ -17,21 +17,18 @@ to-do-list:
 16. Displaying Orders in the User Profile + 
 16.1 Work more on Mobile Version. Add date to orders. 
 16.2 Admin panel where you are able to add, delete, update, etc.
-16.3 
 17. Improve unautharized
-18. Add a secret admin login
-19. Admins can add new products
-20. Admins can edit and delete products
+18. Create Admin panel, amin panel will contain:
+  1. Amount of New users
+  2. Amount Today's Sales
+  3. Earning
+  4. List of Products which will be editable
+  5. Add new product page
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
 22. Wait untill images will loade before showing the page: https://stackoverflow.com/questions/544993/official-way-to-ask-jquery-wait-for-all-images-to-load-before-executing-somethin
 23. Need to fix position on reload, it should stay the same as
 before reload.
 24. Deprecated method fix in /food/:foodType route
-25. (Menu Closing) pops up on reload
+25. (Menu Closing) pops up on reload when F12 is open.
 
-routes:
-"/" will be show all types of products
-"/food/:foodType" will show choosen type of food products
-"/user/signin"
-"/user/signup"
