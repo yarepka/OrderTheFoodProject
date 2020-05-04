@@ -51,13 +51,16 @@ window.addEventListener("resize", (e) => {
     document.documentElement.clientWidth ||
     document.body.clientWidth;
   if (width >= 701) {
-    document.querySelector(".toggler").checked = false;
-    locationItems = document.querySelectorAll(".location-item");
-    locationItems.forEach(item => {
-      item.classList.remove("show");
-    });
-    if (mobileLocationBtn.classList.contains("active")) {
-      mobileLocationBtn.classList.toggle("active");
+    let toggler = document.querySelector(".toggler");
+    if (toggler.checked === true) {
+      toggler.checked = false;
+      locationItems = document.querySelectorAll(".location-item");
+      locationItems.forEach(item => {
+        item.classList.remove("show");
+      });
+      if (mobileLocationBtn.classList.contains("active")) {
+        mobileLocationBtn.classList.toggle("active");
+      }
     }
   }
 });

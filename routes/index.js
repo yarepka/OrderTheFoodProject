@@ -63,7 +63,7 @@ router.get("/shopping-cart", (req, res, next) => {
   // get items(products) of current cart
   const products = cart.generateArray();
   res.render("restaurant/shopping-cart", {
-    products: products,
+    products: products.reverse(),
     totalPrice: cart.totalPrice,
   });
 })
