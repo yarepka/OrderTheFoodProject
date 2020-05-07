@@ -11,9 +11,9 @@ router.get("/", (req, res, next) => {
   console.log("req.session.cart '/': " + req.session.cart);
   // get 20 random products
   // check more on function: https://www.npmjs.com/package/mongoose-simple-random
-  Product.findRandom({}, {}, { limit: 20 }, (err, products) => {
+  Product.findRandom({ isDeleted: false }, {}, { limit: 20 }, (err, products) => {
     if (!err) {
-      if (products.length > 0) {
+      if (typeof (products) !== "undefined" && products.length > 0) {
         req.session.typeUrl = req.url;
         res.render("restaurant/index", { products: products, mainImage: "img/types/all.jpg" });
       } else {
@@ -23,6 +23,13 @@ router.get("/", (req, res, next) => {
       console.log("Error while finding all types products: " + err);
     }
   });
+
+  // clean the shopping cart from the deleted objects
+  if (typeof (req.session.cart) !== "undefined") {
+    let cart = new Cart(req.session.cart);
+    cart.generateArray(req.session.cart);
+    req.session.cart = cart;
+  }
 })
 
 router.get("/add-to-cart/:id", (req, res, next) => {
@@ -35,6 +42,10 @@ router.get("/add-to-cart/:id", (req, res, next) => {
 
   Product.findById(productId, (err, product) => {
     if (err) {
+      return res.redirect("/");
+    }
+
+    if (productId.isDeleted) {
       return res.redirect("/");
     }
 
@@ -61,11 +72,19 @@ router.get("/shopping-cart", (req, res, next) => {
   // cart exists
   const cart = new Cart(req.session.cart);
   // get items(products) of current cart
-  const products = cart.generateArray();
-  res.render("restaurant/shopping-cart", {
-    products: products.reverse(),
-    totalPrice: cart.totalPrice,
-  });
+  // const products = cart.generateArray();
+  // res.render("restaurant/shopping-cart", {
+  //   products: products.reverse(),
+  //   totalPrice: cart.totalPrice,
+  // });
+  const productsPromise = cart.generateArray(req.session.cart);
+
+  productsPromise.then(function (result) {
+    res.render("restaurant/shopping-cart", {
+      products: result.reverse(),
+      totalPrice: cart.totalPrice
+    });
+  })
 })
 
 router.get("/remove/:id", (req, res, next) => {

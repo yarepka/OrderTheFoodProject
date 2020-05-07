@@ -974,7 +974,7 @@ button:hover {
   border-bottom: 5px solid #333;
 }
 
-#admin-panel .box a, #admin-panel .first-line a, #admin-panel .box button {
+#admin-panel .box a, #admin-panel .first-line a, #admin-panel .box button.delete, #admin-panel .box button.reset {
   display: inline-block;
   padding: 0.8rem 1.3rem;
   margin-left: 10px;
@@ -994,7 +994,8 @@ button:hover {
 }
 
 #admin-panel .box a:hover,
-#admin-panel .box button:hover,
+#admin-panel .box button.delete:hover,
+#admin-panel .box button.reset:hover,
 #admin-panel .first-line a:hover {
   opacity: 0.8;
   color: #f4f4f4;
@@ -1008,6 +1009,11 @@ button:hover {
 #admin-panel .box .delete {
   color: #fff;
   background-color: #a94442
+}
+
+#admin-panel .box .reset {
+  background-color: #21bf73;
+  color: #fff;
 }
 
 #admin-panel .box .background-image {
@@ -1125,6 +1131,15 @@ button:hover {
   margin-top: 20px;
   width: 100%;
   border-radius: 5px;
+}
+
+.deleted {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#admin-panel .box .reset {
+  background: rgba(0,0,0,1);
 }
 
 .show {

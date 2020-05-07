@@ -25,9 +25,9 @@ router.get("/info/:id", (req, res, next) => {
 router.get("/:foodType", (req, res, next) => {
   let foodType = _.startCase(_.toLower(req.params.foodType));
 
-  Product.find({ type: foodType }, (err, products) => {
+  Product.find({ type: foodType, isDeleted: false }, (err, products) => {
     if (!err) {
-      if (products.length > 0) {
+      if (typeof (products) !== "undefined" && products.length > 0) {
         req.session.typeUrl = "/food" + req.url;
         res.render("restaurant/index", { products: products, mainImage: "img/types/" + foodType + ".jpg" });
       } else {

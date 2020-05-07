@@ -8,6 +8,10 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   type: [{ type: String }],
   imagePath: { type: String, required: true },
+  isDeleted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 productSchema.plugin(random);

@@ -110,10 +110,16 @@ router.post("/add-product", (req, res, next) => {
 });
 
 router.post("/delete-product/:id", (req, res, next) => {
-  Product.findOneAndDelete({ _id: req.params.id }, (err, product) => {
-    console.log(product);
+  Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: true } }, (err, product) => {
+    console.log("Deleted: " + product);
   });
+  res.redirect("/admin/panel");
+});
 
+router.post("/reset/:id", (req, res, next) => {
+  Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: false } }, (err, product) => {
+    console.log("Reset: " + product);
+  });
   res.redirect("/admin/panel");
 });
 

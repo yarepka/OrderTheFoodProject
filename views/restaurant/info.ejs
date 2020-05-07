@@ -9,7 +9,11 @@
     </div>
     <div class="product-info-price">
       <p class="price">Price: <i class="fas fa-dollar-sign"></i><%= product.price %></p>
+      <% if(product.isDeleted) { %>
+      <a class="btn deleted" href="/">No Product Left</a>
+      <% } else { %>
       <a class="btn" href="/add-to-cart/<%= product._id %>">Add To Cart</a>
+      <% } %>
     </div>
   </div>
 </div>

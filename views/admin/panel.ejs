@@ -31,6 +31,19 @@
     </div>
 
     <% products.forEach(product => { %>
+    <% if(product.isDeleted) {%>
+    <div class="box deleted">
+      <div class="background-image" style="background: url('<%= product.imagePath %>') no-repeat center center/cover">
+      </div>
+
+      <h1 class="title"><%= product.title%></h1>
+
+      <form action="/admin/reset/<%= product._id %>" method="POST">
+        <button type="submit" class="reset">Reset</button>
+      </form>
+
+    </div>
+    <% } else { %>
     <div class="box">
       <div class="background-image" style="background: url('<%= product.imagePath %>') no-repeat center center/cover">
       </div>
@@ -44,6 +57,7 @@
       </form>
 
     </div>
+    <% } %>
     <% }) %>
 
   </section>
