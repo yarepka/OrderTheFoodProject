@@ -34,3 +34,7 @@ before reload.
 24. Deprecated method fix in /food/:foodType route
 25. (Menu Closing) pops up on reload when F12 is open.
 
+26 When profile has no orders should say "You haven't buy anything yet", instead of "My Orders"
+27. Need to add flag "deleted";
+28. Need to create undo for deletion
+

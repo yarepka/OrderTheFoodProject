@@ -22,8 +22,6 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     console.log("filename: " + _.camelCase(req.body.title) + path.extname(file.originalname));
     cb(null, _.camelCase(req.body.title) + path.extname(file.originalname));
-
-    // cb(null, file.fieldname + path.extname(file.originalname));
   }
 });
 
@@ -109,6 +107,14 @@ router.post("/add-product", (req, res, next) => {
       }
     }
   })
+});
+
+router.post("/delete-product/:id", (req, res, next) => {
+  Product.findOneAndDelete({ _id: req.params.id }, (err, product) => {
+    console.log(product);
+  });
+
+  res.redirect("/admin/panel");
 });
 
 module.exports = router;
