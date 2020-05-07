@@ -9,8 +9,15 @@ const Product = require("../models/product");
 // Set the storage engine
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log("destination:" + "../public/img/" + req.body.type.substring(0, req.body.type.indexOf(",")).toLowerCase() + "/");
-    cb(null, "./public/img/" + req.body.type.substring(0, req.body.type.indexOf(",")).toLowerCase() + "/");
+    let destination = "./public/img/";
+    if (req.body.type.indexOf(",") === -1) {
+      destination += _.camelCase(req.body.type).trim();
+    } else {
+      destination += _.camelCase(req.body.type.substring(0, req.body.type.indexOf(","))).trim();
+    }
+    destination += "/"
+
+    cb(null, destination);
   },
   filename: function (req, file, cb) {
     console.log("filename: " + _.camelCase(req.body.title) + path.extname(file.originalname));
@@ -65,11 +72,40 @@ router.post("/add-product", (req, res, next) => {
   upload(req, res, (err) => {
     if (err) {
       console.log("err: " + err);
+      res.render("admin/add-product", { msg: err });
     } else {
       if (req.file === undefined) {
-        console.log("err: No File Selected!");
+        console.log("err: No File Selected");
+        res.render("admin/add-product", { msg: "No File Selected" });
       } else {
-        console.log("file was uploaded!");
+        console.log("body: ");
+        console.log(req.body);
+        console.log("file: ");
+        console.log(req.file);
+
+        // add new product 
+        let types = [];
+        types = req.body.type.split(",");
+        types = types.map(type => {
+          return type.trim();
+        });
+        console.log("splited: ", types);
+
+        const newProduct = new Product({
+          title: req.body.title.trim(),
+          description: req.body.description.trim(),
+          price: req.body.price.trim(),
+          type: types,
+          imagePath: "." + req.file.destination.substring(8, req.file.destination.length) + req.file.filename,
+        });
+
+        console.log("Product:");
+        console.log(newProduct);
+
+        // save new product to database
+        newProduct.save();
+
+        res.redirect("panel");
       }
     }
   })
@@ -87,10 +123,10 @@ function validate(req, file, cb) {
   const mimetype = filetypes.test(file.mimetype);
 
   // Check if any of input fields are empty
-  const title = req.body.title;
-  const description = req.body.description;
-  const price = req.body.price;
-  const types = req.body.type;
+  const title = req.body.title.trim();
+  const description = req.body.description.trim();
+  const price = req.body.price.trim();
+  const types = req.body.type.trim();
 
   console.log(`{
     title: ${title},
@@ -100,7 +136,7 @@ function validate(req, file, cb) {
   }`);
 
   if (title === "" || description === "" || price === "" || types === "") {
-    cb("Not all fields were entered");
+    cb("Error: Empty fields found");
   }
 
   if (mimetype && extname) {
