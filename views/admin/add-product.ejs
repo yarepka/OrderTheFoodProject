@@ -1,6 +1,6 @@
 <div class="container">
   <div class="add-product-container">
-    <form action="/admin/add-product" method="POST">
+    <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
       <h2>Add Product</h2>
 
       <label>Title</label>
@@ -11,14 +11,14 @@
         placeholder="Sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun."></textarea>
 
       <label>Price</label>
-      <input class="input" type="text" name="price" placeholder="$25.55">
+      <input class="input" type="text" name="price" placeholder="25.55">
 
       <label>Type(s)</label>
       <input class="input" type="text" name="type" placeholder="Burger, American">
 
       <label>Image</label>
       <div class="image-input-wrapper">
-        <input type="file"> <span id="val">burger.jpg</span>
+        <input type="file" name="productImage"> <span id="val">burger.jpg</span>
         <span id="button">Select File</span>
       </div>
 
