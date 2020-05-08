@@ -49,13 +49,8 @@
       </div>
 
       <h1 class="title"><%= product.title%></h1>
-
       <a href="/admin/update-product/<%= product._id %>" class="update">Update</a>
-
-      <form action="/admin/delete-product/<%= product._id %>" method="POST">
-        <button type="submit" class="delete">Delete</button>
-      </form>
-
+      <a href="/admin/delete-product/<%= product._id %>" class="delete">Delete</a>
     </div>
     <% } %>
     <% }) %>

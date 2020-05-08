@@ -25,8 +25,9 @@ router.get("/", (req, res, next) => {
   });
 
   // clean the shopping cart from the deleted objects
-  if (typeof (req.session.cart) !== "undefined") {
+  if (typeof (req.session.cart) !== "undefined" && req.session.cart !== null) {
     let cart = new Cart(req.session.cart);
+    console.log("cart: " + cart)
     cart.generateArray(req.session.cart);
     req.session.cart = cart;
   }
@@ -84,7 +85,7 @@ router.get("/shopping-cart", (req, res, next) => {
       products: result.reverse(),
       totalPrice: cart.totalPrice
     });
-  })
+  });
 })
 
 router.get("/remove/:id", (req, res, next) => {

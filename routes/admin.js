@@ -22,6 +22,8 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     console.log("filename: " + _.camelCase(req.body.title) + path.extname(file.originalname));
     cb(null, _.camelCase(req.body.title) + path.extname(file.originalname));
+
+    // cb(null, file.fieldname + path.extname(file.originalname));
   }
 });
 
@@ -109,6 +111,7 @@ router.post("/add-product", (req, res, next) => {
   })
 });
 
+<<<<<<< HEAD
 router.post("/delete-product/:id", (req, res, next) => {
   Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: true } }, (err, product) => {
     console.log("Deleted: " + product);
@@ -123,6 +126,8 @@ router.post("/reset/:id", (req, res, next) => {
   res.redirect("/admin/panel");
 });
 
+=======
+>>>>>>> parent of 5007d1d... Delete products added
 module.exports = router;
 
 // Check File Type

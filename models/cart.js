@@ -53,6 +53,7 @@ module.exports = function Cart(oldCart) {
     let arr = [];
     let ttlQty = 0;
     let ttlPrice = 0;
+    if (this.items === null) return {};
     for (var id in this.items) {
       await Product.findOne({ _id: id }, (err, product) => {
         if (typeof (product) !== "undefined" && !product.isDeleted) {
@@ -71,8 +72,11 @@ module.exports = function Cart(oldCart) {
         }
       });
     }
-    sessionCart.totalQty = ttlQty;
-    sessionCart.totalPrice = ttlPrice;
+
+    if (sessionCart !== null && typeof (sessionCart) !== "undefined") {
+      sessionCart.totalQty = ttlQty;
+      sessionCart.totalPrice = ttlPrice;
+    }
 
     return arr;
   };

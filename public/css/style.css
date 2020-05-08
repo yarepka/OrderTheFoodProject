@@ -974,12 +974,15 @@ button:hover {
   border-bottom: 5px solid #333;
 }
 
+<<<<<<< HEAD
 #admin-panel .box a, #admin-panel .first-line a, #admin-panel .box button.delete, #admin-panel .box button.reset {
+=======
+#admin-panel .box a, #admin-panel .first-line a {
+>>>>>>> parent of 5007d1d... Delete products added
   display: inline-block;
   padding: 0.8rem 1.3rem;
   margin-left: 10px;
   border-radius: 10px;
-  font-size: 1.1rem;
   font-weight: 550;
 }
 
@@ -994,8 +997,11 @@ button:hover {
 }
 
 #admin-panel .box a:hover,
+<<<<<<< HEAD
 #admin-panel .box button.delete:hover,
 #admin-panel .box button.reset:hover,
+=======
+>>>>>>> parent of 5007d1d... Delete products added
 #admin-panel .first-line a:hover {
   opacity: 0.8;
   color: #f4f4f4;
