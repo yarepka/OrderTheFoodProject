@@ -21,24 +21,17 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
       return res.write("Error!");
     }
 
-    ord = orders;
-    console.log("end of find");
-  });
+    let cart;
+    orders.forEach((order) => {
+      // generate new cart for each order
+      cart = new Cart(order.cart);
+      // storing items(products) in the items field
+      // of the order object
+      order.items = cart.generateArray();
+    });
 
-  let cart;
-  ord.forEach((order) => {
-    // generate new cart for each order
-    cart = new Cart(order.cart);
-    // storing items(products) in the items field
-    // of the order object
-    orderItemsPromis = cart.generateArray(req.session.cart);
-    console.log("got orderItemsPromis");
-    orderItemsPromis.then(function (result) {
-      console.log("HAPPENED");
-      order.items = result;
-    })
+    res.render("user/profile", { orders: orders.reverse() });
   });
-  res.render("user/profile", { orders: ord.reverse() });
 });
 
 router.get("/logout", (req, res, next) => {

@@ -3,7 +3,6 @@
   <% if(products && session.cart.totalQty != 0) { %>
   <div class="shopping-cart-items">
     <% products.forEach(product => { %>
-    <% if(!product.isDeleted) { %>
     <div class="shopping-cart-item">
       <div class="img shopping-cart-picture"
         style="background: url('<%= product.item.imagePath %>') no-repeat center center/cover">
@@ -29,9 +28,7 @@
         </div>
       </div>
     </div>
-    <% } %>
     <% }); %>
-
   </div>
   <div class="total-price-wrapper">
     <h3>Total: <i class="fas fa-dollar-sign"></i><%= totalPrice.toFixed(2) %></h3>

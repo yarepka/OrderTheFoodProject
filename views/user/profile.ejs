@@ -1,6 +1,5 @@
 <div class="container">
   <div class="order-items">
-    <% if(orders.length > 0) { %>
     <h1 class="main-title">My Orders:</h1>
     <% orders.forEach(order => { %>
     <div class="order-item">
@@ -20,8 +19,5 @@
       </div>
     </div>
     <% }); %>
-    <% } else { %>
-    <h1 class="main-title">You haven't buy anything yet</h1>
-    <% } %>
   </div>
 </div>

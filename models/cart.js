@@ -1,5 +1,4 @@
 module.exports = function Cart(oldCart) {
-  const Product = require("../models/product");
   this.items = oldCart.items || {};
   this.totalQty = oldCart.totalQty || 0;
   this.totalPrice = oldCart.totalPrice || 0;
@@ -49,35 +48,11 @@ module.exports = function Cart(oldCart) {
   };
 
   // will give cart items as an array
-  this.generateArray = async function (sessionCart) {
-    let arr = [];
-    let ttlQty = 0;
-    let ttlPrice = 0;
-    if (this.items === null) return {};
+  this.generateArray = function () {
+    var arr = [];
     for (var id in this.items) {
-      await Product.findOne({ _id: id }, (err, product) => {
-        if (typeof (product) !== "undefined" && !product.isDeleted) {
-          ttlQty += this.items[id].qty;
-          ttlPrice += this.items[id].price;
-          arr.push(this.items[id]);
-        } else if (product.isDeleted) {
-          for (let i = 0; i < this.items[id].qty; i++) {
-            console.log(`i: ${i}, this.totalQty: ${this.totalQty}, this.totalPrice ${this.totalPrice}`);
-            this.totalQty--;
-            this.totalPrice -= this.items[id].item.price;
-          }
-          this.items[id].qty = 0;
-          this.items[id].price = 0;
-          delete this.items[id];
-        }
-      });
+      arr.push(this.items[id]);
     }
-
-    if (sessionCart !== null && typeof (sessionCart) !== "undefined") {
-      sessionCart.totalQty = ttlQty;
-      sessionCart.totalPrice = ttlPrice;
-    }
-
     return arr;
   };
 };
