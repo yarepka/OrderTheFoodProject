@@ -31,20 +31,25 @@
     </div>
 
     <% products.forEach(product => { %>
-    <div class="box">
+    <div class="box<%if(product.isDeleted) {%> deleted<%}%>">
       <div class="background-image" style="background: url('<%= product.imagePath %>') no-repeat center center/cover">
-      </div>
-
-      <h1 class="title"><%= product.title%></h1>
-
-      <a href="/admin/update-product/<%= product._id %>" class="update">Update</a>
-
-      <form action="/admin/delete-product/<%= product._id %>" method="POST">
-        <button type="submit" class="delete">Delete</button>
-      </form>
-
     </div>
-    <% }) %>
 
-  </section>
+    <h1 class="title"><%= product.title%></h1>
+
+    <% if(!product.isDeleted)  { %>
+    <a href="/admin/update-product/<%= product._id %>" class="update">Update</a>
+
+    <form action="/admin/delete-product/<%= product._id %>" method="POST">
+      <button type="submit" class="delete">Delete</button>
+    </form>
+    <% } else { %>
+    <form action="/admin/reset/<%= product._id %>" method="POST">
+      <button type="submit" class="reset">Reset</button>
+    </form>
+    <% } %>
+</div>
+<% }) %>
+
+</section>
 </div>

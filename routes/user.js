@@ -21,16 +21,30 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
       return res.write("Error!");
     }
 
+    if (orders.length === 0) {
+      console.log("No orders");
+      res.render("user/profile", { orders: null });
+    }
+
     let cart;
-    orders.forEach((order) => {
-      // generate new cart for each order
-      cart = new Cart(order.cart);
-      // storing items(products) in the items field
-      // of the order object
-      order.items = cart.generateArray();
+
+    let orderPromise = new Promise((resolve, reject) => {
+      console.log("PROFILE: inside orderPromise");
+      orders.forEach(async (order, index, array) => {
+        console.log(`PROFILE: inside forEach, order: ${order}, index: ${index}`);
+        cart = new Cart(order.cart);
+        order.items = await cart.generateArray();
+        if (index === array.length - 1) {
+          console.log("PROFILE: before oderPromise resolve");
+          resolve();
+        }
+      });
     });
 
-    res.render("user/profile", { orders: orders.reverse() });
+    orderPromise.then(() => {
+      console.log("PROFILE: orderPromise.then(), before rendering");
+      res.render("user/profile", { orders: orders.reverse() });
+    })
   });
 });
 

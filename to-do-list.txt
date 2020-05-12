@@ -33,4 +33,4 @@ the receipt in pdf format
 before reload.
 24. Deprecated method fix in /food/:foodType route
 25. (Menu Closing) pops up on reload when F12 is open.
-
+26. Add loader .gif untill the scroll position set

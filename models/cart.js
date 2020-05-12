@@ -1,4 +1,5 @@
 module.exports = function Cart(oldCart) {
+  const Product = require("../models/product");
   this.items = oldCart.items || {};
   this.totalQty = oldCart.totalQty || 0;
   this.totalPrice = oldCart.totalPrice || 0;
@@ -48,11 +49,75 @@ module.exports = function Cart(oldCart) {
   };
 
   // will give cart items as an array
-  this.generateArray = function () {
-    var arr = [];
-    for (var id in this.items) {
-      arr.push(this.items[id]);
-    }
+  this.generateArray = function (sessionCart) {
+    let p = new Promise((resolve, reject) => {
+      let arr = [];
+      let ttlQty = 0;
+      let ttlPrice = 0;
+      Object.entries(this.items).forEach(async (item, index, array) => {
+        console.log(`CART: id:${item[0]}, index: ${index}`);
+        let id = item[0];
+        await Product.findOne({ _id: id }, (err, product) => {
+          if (typeof (product) !== "undefined" && product !== null && !product.isDeleted) {
+            ttlQty += this.items[id].qty;
+            ttlPrice += this.items[id].price;
+            console.log("CART: before pusgin to arr: " + this.items[id]);
+            arr.push(this.items[id]);
+          } else if (product !== null && product.isDeleted) {
+            for (let i = 0; i < this.items[id].qty; i++) {
+              console.log(`i: ${i}, this.totalQty: ${this.totalQty}, this.totalPrice ${this.totalPrice}`);
+              this.totalQty--;
+              this.totalPrice -= this.items[id].item.price;
+            }
+            this.items[id].qty = 0;
+            this.items[id].price = 0;
+            delete this.items[id];
+          }
+        });
+
+        if (index === array.length - 1) {
+          if (typeof (sessionCart) !== "undefined" && typeof (sessionCart) !== null) {
+            sessionCart.totalQty = ttlQty;
+            sessionCart.totalPrice = ttlPrice;
+          }
+          console.log("CART: BEFORE RESOLVE");
+          console.log(arr);
+          resolve(arr);
+        }
+      });
+    });
+
+    return p;
+
+    // console.log("AAAAAAAAAA: ", Object.entries(this.items));
+    // Object.entries(this.items).forEach((item, index, array) => console.log(`index: ${index}, id: ${item[0]}, arrayLength: ${array.length}`));
+
+
+
+    // for (var id in this.items) {
+    //   console.log("CART: INSIDE for");
+    //   console.log("CART: id = ", id);
+    //   await Product.findOne({ _id: id }, (err, product) => {
+    //     if (typeof (product) !== "undefined" && product !== null && !product.isDeleted) {
+    //       ttlQty += this.items[id].qty;
+    //       ttlPrice += this.items[id].price;
+    //       arr.push(this.items[id]);
+    //     } else if (product !== null && product.isDeleted) {
+    //       for (let i = 0; i < this.items[id].qty; i++) {
+    //         console.log(`i: ${i}, this.totalQty: ${this.totalQty}, this.totalPrice ${this.totalPrice}`);
+    //         this.totalQty--;
+    //         this.totalPrice -= this.items[id].item.price;
+    //       }
+    //       this.items[id].qty = 0;
+    //       this.items[id].price = 0;
+    //       delete this.items[id];
+    //     }
+    //   });
+    // }
+    // sessionCart.totalQty = ttlQty;
+    // sessionCart.totalPrice = ttlPrice;
+
+    console.log("CART: BEFORE RETURN");
     return arr;
   };
 };

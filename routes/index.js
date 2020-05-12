@@ -7,11 +7,11 @@ const Cart = require('../models/cart');
 const Order = require("../models/order");
 
 router.get("/", (req, res, next) => {
-  console.log("req.user in '/' route: " + req.user);
-  console.log("req.session.cart '/': " + req.session.cart);
+  console.log("req.user in '/' route: ", req.user);
+  console.log("req.session.cart '/': ", req.session.cart);
   // get 20 random products
   // check more on function: https://www.npmjs.com/package/mongoose-simple-random
-  Product.findRandom({}, {}, { limit: 20 }, (err, products) => {
+  Product.findRandom({ isDeleted: false }, {}, { limit: 20 }, (err, products) => {
     if (!err) {
       if (products.length > 0) {
         req.session.typeUrl = req.url;
@@ -20,13 +20,13 @@ router.get("/", (req, res, next) => {
         console.log("Your products database is empty.");
       }
     } else {
-      console.log("Error while finding all types products: " + err);
+      console.log("Error while finding all types products: ", err);
     }
   });
 })
 
 router.get("/add-to-cart/:id", (req, res, next) => {
-  console.log("req.session.typeUrl: " + req.session.typeUrl);
+  console.log("req.session.typeUrl: ", req.session.typeUrl);
   // we need to have cart object which will have products.
   // Cart object then will be stored in the session
   var productId = req.params.id;
@@ -38,15 +38,18 @@ router.get("/add-to-cart/:id", (req, res, next) => {
       return res.redirect("/");
     }
 
-    // add product to the cart
-    cart.add(product, product.id);
+    if (!product.isDeleted) {
 
-    // storing cart object in the session
-    // express-session will automatically
-    // save with each response we send back
-    req.session.cart = cart;
-    console.log(req.session.cart);
-    res.redirect(req.session.typeUrl);
+      // add product to the cart
+      cart.add(product, product.id);
+
+      // storing cart object in the session
+      // express-session will automatically
+      // save with each response we send back
+      req.session.cart = cart;
+      console.log(req.session.cart);
+      res.redirect(req.session.typeUrl);
+    }
   });
 });
 
@@ -61,10 +64,11 @@ router.get("/shopping-cart", (req, res, next) => {
   // cart exists
   const cart = new Cart(req.session.cart);
   // get items(products) of current cart
-  const products = cart.generateArray();
-  res.render("restaurant/shopping-cart", {
-    products: products.reverse(),
-    totalPrice: cart.totalPrice,
+  cart.generateArray(req.session.cart).then(products => {
+    res.render("restaurant/shopping-cart", {
+      products: products.reverse(),
+      totalPrice: cart.totalPrice,
+    });
   });
 })
 

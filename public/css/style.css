@@ -916,6 +916,7 @@ button:hover {
 }
 
 #admin-top .box {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background: var(--background-color);
@@ -959,11 +960,27 @@ button:hover {
 }
 
 #admin-panel .box {
+  position: relative;
   display: flex;
   align-items: center;
   flex: 1;
   margin-bottom: 20px;
   border-radius: 10px;
+}
+
+#admin-panel .deleted:before {
+  content: ":)";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(144,144,144,0.5);
+  border-radius: 10px;
+}
+
+#admin-panel .deleted .background-image, #admin-panel .deleted form, #admin-panel .deleted .title  {
+  z-index: 1;
 }
 
 #admin-panel .first-line {
@@ -981,6 +998,14 @@ button:hover {
   border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 550;
+}
+
+#admin-panel .deleted .reset {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  background: #333;
+  margin-top: 1px;
+  margin-right: 2px;
 }
 
 #admin-panel .box .title {
