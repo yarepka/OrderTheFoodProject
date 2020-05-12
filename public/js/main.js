@@ -3,16 +3,7 @@ let moreIcon = document.querySelector(".more-btn a i");
 let currentYear = new Date().getFullYear();
 let toggler = document.querySelector(".toggler");
 let buttons = document.querySelectorAll("a");
-
-// window.addEventListener('scroll', function () {
-//   //When scroll change, you save it on localStorage.
-//   localStorage.setItem('scrollPosition', window.scrollY);
-// }, false);
-
-// window.addEventListener('load', function () {
-//   if (localStorage.getItem('scrollPosition') !== null)
-//     window.scrollTo(0, localStorage.getItem('scrollPosition'));
-// }, false);
+let btnSoldOut = document.querySelector("#product-info-item .product-info-price .btn-sold-out");
 
 $(window).scroll(function () {
   sessionStorage.scrollTop = $(this).scrollTop();
@@ -31,19 +22,6 @@ $('.add-product-container form #button').click(function () {
 $(".add-product-container form input[type='file']").change(function () {
   $('.add-product-container form #val').text(this.value.replace(/C:\\fakepath\\/i, ''))
 })
-
-moreBtn.addEventListener("click", (e) => {
-  let moreContent = document.querySelector(".more-content");
-  console.log(moreContent);
-  moreContent.classList.toggle("show");
-  if (moreContent.classList.contains("show")) {
-    moreIcon.classList.remove("fa-angle-down");
-    moreIcon.classList.add("fa-angle-up");
-  } else {
-    moreIcon.classList.remove("fa-angle-up");
-    moreIcon.classList.add("fa-angle-down");
-  }
-});
 
 window.addEventListener("resize", (e) => {
   let width =
@@ -65,5 +43,29 @@ window.addEventListener("resize", (e) => {
   }
 });
 
+if (btnSoldOut) {
+  btnSoldOut.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+}
+
+if (moreBtn) {
+  moreBtn.addEventListener("click", (e) => {
+    let moreContent = document.querySelector(".more-content");
+    console.log(moreContent);
+    moreContent.classList.toggle("show");
+    if (moreContent.classList.contains("show")) {
+      moreIcon.classList.remove("fa-angle-down");
+      moreIcon.classList.add("fa-angle-up");
+    } else {
+      moreIcon.classList.remove("fa-angle-up");
+      moreIcon.classList.add("fa-angle-down");
+    }
+  });
+}
+
 // set current year
-document.querySelector(".year").innerHTML = currentYear;
+const year = document.querySelector(".year");
+if (year) {
+  year.innerHTML = currentYear;
+}

@@ -273,6 +273,8 @@ button:hover {
   border-radius: 50px;
 }
 
+
+
 .food-price-add-container .price {
   align-self: center;
   font-weight: 800;
@@ -896,6 +898,11 @@ button:hover {
   font-weight: 700;
   padding: 0.8rem 1.3rem;
   border-radius: 5px;
+}
+
+#product-info-item .product-info-price .btn-sold-out {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .info-background-img {
