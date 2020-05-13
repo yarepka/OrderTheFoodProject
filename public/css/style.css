@@ -1167,6 +1167,22 @@ button:hover {
   display: none;
 }
 
+.btn-admin-panel {
+  display: inline-block;
+  background: #0779e4;
+  color: #fff;
+  padding: 0.75rem 1.3rem;
+  margin-bottom: 30px;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.btn-admin-panel:hover {
+  background: #333;
+  color: #f4f4f4;
+}
+
 /* Media queries */
 @media (min-width: 1101px) {
   .main-nav .menu-wrap .toggler:checked ~ .menu {
