@@ -25,7 +25,7 @@ to-do-list:
   4. List of Products which will be editable +
   5. Add new product page +
 19. Need to add date to order, product, user models
-20. Need to Update product-seeder
+20. Need to Update product-seeder +
 21. When the user pays they should get a receipt. Either send the user an email or allow them an option to download
 the receipt in pdf format
 22. Wait untill images will loade before showing the page: https://stackoverflow.com/questions/544993/official-way-to-ask-jquery-wait-for-all-images-to-load-before-executing-somethin
@@ -34,3 +34,4 @@ before reload.
 24. Deprecated method fix in /food/:foodType route
 25. (Menu Closing) pops up on reload when F12 is open.
 26. Add loader .gif untill the scroll position set
+27. https://stackoverflow.com/questions/24942037/mongoose-schema-optional-fields

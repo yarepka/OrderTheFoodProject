@@ -5,6 +5,7 @@ const multer = require("multer");
 const _ = require('lodash');
 
 const Product = require("../models/product");
+const User = require("../models/user");
 
 // Set the storage engine
 const storage = multer.diskStorage({
@@ -33,7 +34,9 @@ const upload = multer({
   }
 }).single("productImage");
 
-router.get("/panel", (req, res, next) => {
+router.get("/panel", isAdmin, (req, res, next) => {
+  console.log("User: ", req.user);
+  console.log("IsAuthenticated: ", req.isAuthenticated());
   Product.find({}, (err, products) => {
     if (!err) {
       if (products.length > 0) {
@@ -48,11 +51,11 @@ router.get("/panel", (req, res, next) => {
 
 });
 
-router.get("/add-product", (req, res, next) => {
+router.get("/add-product", isAdmin, (req, res, next) => {
   res.render("admin/add-product");
 });
 
-router.get("/update-product/:id", (req, res, next) => {
+router.get("/update-product/:id", isAdmin, (req, res, next) => {
   let id = req.params.id;
   Product.findOne({ _id: id }, (err, product) => {
     if (!err) {
@@ -66,7 +69,7 @@ router.get("/update-product/:id", (req, res, next) => {
 });
 
 
-router.post("/add-product", (req, res, next) => {
+router.post("/add-product", isAdmin, (req, res, next) => {
   upload(req, res, (err) => {
     if (err) {
       console.log("err: " + err);
@@ -109,14 +112,14 @@ router.post("/add-product", (req, res, next) => {
   })
 });
 
-router.post("/delete-product/:id", (req, res, next) => {
+router.post("/delete-product/:id", isAdmin, (req, res, next) => {
   Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: true } }, (err, product) => {
     console.log("Deleted:", product);
     res.redirect("/admin/panel");
   });
 });
 
-router.post("/reset/:id", (req, res, next) => {
+router.post("/reset/:id", isAdmin, (req, res, next) => {
   Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: false } }, (err, product) => {
     console.log("Reset:", product);
     res.redirect("/admin/panel");
@@ -124,6 +127,31 @@ router.post("/reset/:id", (req, res, next) => {
 })
 
 module.exports = router;
+
+function isAdmin(req, res, next) {
+  // is Authenticated
+  if (req.isAuthenticated()) {
+    User.findOne({ _id: req.user._id }, (err, user) => {
+      if (!err) {
+        if (typeof (user) !== "undefined" && user !== null) {
+          if (user.isAdmin) {
+            console.log(`User: ${user} is admin.`)
+            return next();
+          } else {
+            console.log(`User: ${user} is not admin`);
+            res.redirect("/");
+          }
+        }
+      } else {
+        console.log(`Can't find user with ${user._id} id.`);
+        res.redirect("/");
+      }
+    });
+  } else {
+    console.log(`User: ${req.user} is not authenticated`)
+    res.redirect("/user/signin");
+  }
+}
 
 // Check File Type
 function validate(req, file, cb) {

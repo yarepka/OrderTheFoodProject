@@ -23,7 +23,7 @@ router.get("/", (req, res, next) => {
       console.log("Error while finding all types products: ", err);
     }
   });
-})
+});
 
 router.get("/add-to-cart/:id", (req, res, next) => {
   console.log("req.session.typeUrl: ", req.session.typeUrl);
@@ -55,9 +55,10 @@ router.get("/add-to-cart/:id", (req, res, next) => {
 
 router.get("/shopping-cart", (req, res, next) => {
   // check if there is cart for current session
-
+  console.log("shopping-cart: req.session.cart - ", req.session.cart);
   // no cart
-  if (!req.session.cart) {
+  if (!req.session.cart || (req.session.cart.totalQty === 0 && req.session.cart.totalPrice === 0)) {
+    console.log("SHOPPING-CART: no cart");
     return res.render("restaurant/shopping-cart", { products: null });
   }
 
@@ -65,6 +66,7 @@ router.get("/shopping-cart", (req, res, next) => {
   const cart = new Cart(req.session.cart);
   // get items(products) of current cart
   cart.generateArray(req.session.cart).then(products => {
+    console.log("SHOPPING-CART, BEFORE RENDERING");
     res.render("restaurant/shopping-cart", {
       products: products.reverse(),
       totalPrice: cart.totalPrice,

@@ -76,10 +76,10 @@ module.exports = function Cart(oldCart) {
         });
 
         if (index === array.length - 1) {
-          if (typeof (sessionCart) !== "undefined" && typeof (sessionCart) !== null) {
+          if (typeof (sessionCart) !== "undefined" && typeof (sessionCart) !== null && ttlPrice !== 0 && ttlQty !== 0) {
             sessionCart.totalQty = ttlQty;
             sessionCart.totalPrice = ttlPrice;
-          }
+          } 
           console.log("CART: BEFORE RESOLVE");
           console.log(arr);
           resolve(arr);
@@ -88,36 +88,5 @@ module.exports = function Cart(oldCart) {
     });
 
     return p;
-
-    // console.log("AAAAAAAAAA: ", Object.entries(this.items));
-    // Object.entries(this.items).forEach((item, index, array) => console.log(`index: ${index}, id: ${item[0]}, arrayLength: ${array.length}`));
-
-
-
-    // for (var id in this.items) {
-    //   console.log("CART: INSIDE for");
-    //   console.log("CART: id = ", id);
-    //   await Product.findOne({ _id: id }, (err, product) => {
-    //     if (typeof (product) !== "undefined" && product !== null && !product.isDeleted) {
-    //       ttlQty += this.items[id].qty;
-    //       ttlPrice += this.items[id].price;
-    //       arr.push(this.items[id]);
-    //     } else if (product !== null && product.isDeleted) {
-    //       for (let i = 0; i < this.items[id].qty; i++) {
-    //         console.log(`i: ${i}, this.totalQty: ${this.totalQty}, this.totalPrice ${this.totalPrice}`);
-    //         this.totalQty--;
-    //         this.totalPrice -= this.items[id].item.price;
-    //       }
-    //       this.items[id].qty = 0;
-    //       this.items[id].price = 0;
-    //       delete this.items[id];
-    //     }
-    //   });
-    // }
-    // sessionCart.totalQty = ttlQty;
-    // sessionCart.totalPrice = ttlPrice;
-
-    console.log("CART: BEFORE RETURN");
-    return arr;
   };
 };
