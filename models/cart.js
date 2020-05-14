@@ -79,14 +79,21 @@ module.exports = function Cart(oldCart) {
           if (typeof (sessionCart) !== "undefined" && typeof (sessionCart) !== null && ttlPrice !== 0 && ttlQty !== 0) {
             sessionCart.totalQty = ttlQty;
             sessionCart.totalPrice = ttlPrice;
-          } 
+          }
           console.log("CART: BEFORE RESOLVE");
           console.log(arr);
           resolve(arr);
         }
       });
     });
-
     return p;
   };
+
+  this.generateArrayOld = function () {
+    var arr = [];
+    for (var id in this.items) {
+      arr.push(this.items[id]);
+    }
+    return arr;
+  }
 };

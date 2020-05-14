@@ -23,6 +23,14 @@ $(".add-product-container form input[type='file']").change(function () {
   $('.add-product-container form #val').text(this.value.replace(/C:\\fakepath\\/i, ''))
 })
 
+$('.update-product-container form #button').click(function () {
+  $(".update-product-container form input[type='file']").trigger('click');
+})
+
+$(".update-product-container form input[type='file']").change(function () {
+  $('.update-product-container form #val').text(this.value.replace(/C:\\fakepath\\/i, ''))
+})
+
 window.addEventListener("resize", (e) => {
   let width =
     window.innerWidth ||

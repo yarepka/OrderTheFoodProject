@@ -9,20 +9,53 @@ const User = require("../models/user");
 
 // Set the storage engine
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: async function (req, file, cb) {
     let destination = "./public/img/";
-    if (req.body.type.indexOf(",") === -1) {
-      destination += _.camelCase(req.body.type).trim();
+
+    if (req.body.page === "update") {
+      console.log(">>>UPDATE");
+      if (req.body.type.trim() === "") {
+        await Product.findOne({ _id: req.body.id }, (err, product) => {
+          if (!err) {
+            if (typeof (product) !== "undefined") {
+              destination += _.camelCase(product.type[0]).trim();
+            }
+          }
+        });
+      } else {
+        if (req.body.type.indexOf(",") === -1) {
+          destination += _.camelCase(req.body.type).trim();
+        } else {
+          destination += _.camelCase(req.body.type.substring(0, req.body.type.indexOf(","))).trim();
+        }
+      }
     } else {
-      destination += _.camelCase(req.body.type.substring(0, req.body.type.indexOf(","))).trim();
+      if (req.body.type.indexOf(",") === -1) {
+        destination += _.camelCase(req.body.type).trim();
+      } else {
+        destination += _.camelCase(req.body.type.substring(0, req.body.type.indexOf(","))).trim();
+      }
     }
+
     destination += "/"
 
     cb(null, destination);
   },
-  filename: function (req, file, cb) {
+
+  filename: async function (req, file, cb) {
     console.log("filename: " + _.camelCase(req.body.title) + path.extname(file.originalname));
-    cb(null, _.camelCase(req.body.title) + path.extname(file.originalname));
+
+    let fl;
+
+    if (req.body.title.trim() === "" && req.body.page === "update") {
+      await Product.findOne({ _id: req.body.id }, (err, product) => {
+        fl = _.camelCase(product.title) + path.extname(file.originalname);
+      });
+    } else {
+      fl = _.camelCase(req.body.title) + path.extname(file.originalname);
+    }
+
+    cb(null, fl);
   }
 });
 
@@ -55,6 +88,7 @@ router.get("/add-product", isAdmin, (req, res, next) => {
   res.render("admin/add-product");
 });
 
+
 router.get("/update-product/:id", isAdmin, (req, res, next) => {
   let id = req.params.id;
   Product.findOne({ _id: id }, (err, product) => {
@@ -68,6 +102,49 @@ router.get("/update-product/:id", isAdmin, (req, res, next) => {
   })
 });
 
+router.post("/update-product", isAdmin, (req, res, next) => {
+  upload(req, res, async (err) => {
+    console.log(">>>REQ.BODY: ", req.body);
+    if (err) {
+      console.log("err: " + err);
+    } else {
+      console.log(">>>Image Updated", req.file);
+      await Product.findOne({ _id: req.body.id }, (err, product) => {
+        if (!err) {
+          if (req.body.title.trim() !== "") {
+            product.title = req.body.title.trim();
+          }
+
+          if (req.body.description.trim() !== "") {
+            product.description = req.body.description.trim();
+          }
+
+          if (req.body.price !== "") {
+            product.price = req.body.price;
+          }
+
+          if (req.body.type.trim() !== "") {
+            let types = [];
+            types = req.body.type.split(",");
+            types = types.map(type => {
+              return type.trim();
+            });
+            product.type = types;
+          }
+
+          if (req.file !== undefined) {
+            product.imagePath = "." + req.file.destination.substring(8, req.file.destination.length) + req.file.filename;
+          } else {
+            console.log(">>>Image Was Not Updated", req.file);
+          }
+
+          console.log(">>>UPDATED PRODUCT: ", product);
+          product.save();
+        }
+      })
+    }
+  })
+});
 
 router.post("/add-product", isAdmin, (req, res, next) => {
   upload(req, res, (err) => {
@@ -111,6 +188,8 @@ router.post("/add-product", isAdmin, (req, res, next) => {
     }
   })
 });
+
+
 
 router.post("/delete-product/:id", isAdmin, (req, res, next) => {
   Product.updateOne({ _id: req.params.id }, { $set: { isDeleted: true } }, (err, product) => {
@@ -167,15 +246,17 @@ function validate(req, file, cb) {
   const description = req.body.description.trim();
   const price = req.body.price.trim();
   const types = req.body.type.trim();
+  const page = req.body.page.trim();
 
   console.log(`{
     title: ${title},
     description: ${description},
     price: ${price},
     types: ${types},
+    page: ${page}
   }`);
 
-  if (title === "" || description === "" || price === "" || types === "") {
+  if (page === "add" && (title === "" || description === "" || price === "" || types === "")) {
     cb("Error: Empty fields found");
   }
 

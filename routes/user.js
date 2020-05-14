@@ -46,7 +46,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
       orders.forEach(async (order, index, array) => {
         console.log(`PROFILE: inside forEach, order: ${order}, index: ${index}`);
         cart = new Cart(order.cart);
-        order.items = await cart.generateArray();
+        order.items = await cart.generateArrayOld();
         if (index === array.length - 1) {
           console.log("PROFILE: before oderPromise resolve");
 

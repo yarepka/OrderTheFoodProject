@@ -1,9 +1,12 @@
 <div class="container">
   <div class="update-product-container">
-    <form action="/admin/update-product" method="POST">
+    <form action="/admin/update-product" method="POST" enctype="multipart/form-data">
       <h2>Update Product</h2>
 
       <label>Title</label>
+      <input type="hidden" name="id" value="<%= product.id %>">
+      <input type="hidden" name="page" value="update">
+
       <input class="input" type="text" name="title" value="<%= product.title %>" />
 
       <label>Description</label>
@@ -18,7 +21,7 @@
 
       <label>Image</label>
       <div class="image-input-wrapper">
-        <input type="file" name="img"> <span id="val"></span>
+        <input type="file" name="productImage"> <span id="val"></span>
         <span id="button">Select File</span>
       </div>
 
