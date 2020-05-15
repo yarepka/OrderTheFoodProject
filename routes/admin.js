@@ -107,6 +107,7 @@ router.post("/update-product", isAdmin, (req, res, next) => {
     console.log(">>>REQ.BODY: ", req.body);
     if (err) {
       console.log("err: " + err);
+      res.redirect("panel");
     } else {
       console.log(">>>Image Updated", req.file);
       await Product.findOne({ _id: req.body.id }, (err, product) => {
@@ -140,6 +141,8 @@ router.post("/update-product", isAdmin, (req, res, next) => {
 
           console.log(">>>UPDATED PRODUCT: ", product);
           product.save();
+
+          res.redirect("panel");
         }
       })
     }

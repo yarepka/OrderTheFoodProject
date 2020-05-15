@@ -90,10 +90,26 @@ module.exports = function Cart(oldCart) {
   };
 
   this.generateArrayOld = function () {
-    var arr = [];
-    for (var id in this.items) {
-      arr.push(this.items[id]);
-    }
-    return arr;
+    let p = new Promise((resolve, reject) => {
+      let arr = [];
+      Object.entries(this.items).forEach(async (item, index, array) => {
+        let id = item[0];
+        await Product.findOne({ _id: id }, (err, product) => {
+          if (!err) {
+            if (typeof (product) !== "undefined" && product !== null) {
+              this.items[id].item.title = product.title;
+              arr.push(this.items[id]);
+            }
+          }
+        });
+
+        if (index === array.length - 1) {
+          console.log("!!!!!ARR before return", arr);
+          resolve(arr);
+        }
+      });
+    });
+
+    return p;
   }
 };
