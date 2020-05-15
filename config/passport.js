@@ -76,6 +76,7 @@ passport.use(
         var newUser = new User();
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
+        newUser.createdOn = new Date();
         newUser.save((err, result) => {
           if (err) {
             return done(err);

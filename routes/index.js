@@ -157,6 +157,7 @@ router.post("/checkout", isLoggedIn, (req, res, next) => {
         cart: cart,
         address: req.body.address,
         name: req.body.name,
+        createdOn: new Date(),
         paymentId: charge.id,
       });
 

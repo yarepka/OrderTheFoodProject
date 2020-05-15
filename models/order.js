@@ -7,6 +7,7 @@ const schema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
   cart: { type: Object, required: true },
   address: { type: String, required: true },
+  createdOn: { type: Date, required: true },
   // person's name
   name: { type: String, required: true },
 

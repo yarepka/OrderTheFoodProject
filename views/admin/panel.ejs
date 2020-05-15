@@ -2,7 +2,7 @@
   <section id="admin-top">
     <div id="box-1" class="box">
       <div class="content">
-        <p class="number">370</p>
+        <p class="number"><%= todayData.todayUsers %></p>
         <p>new users</p>
       </div>
       <i class="fas fa-users fa-3x main-icon"></i>
@@ -10,15 +10,15 @@
 
     <div id="box-2" class="box">
       <div class="content">
-        <p class="number">13</p>
-        <p>Today's sale</p>
+        <p class="number"><%= todayData.todayOrders %></p>
+        <p>Today's Orders</p>
       </div>
       <i class="fas fa-briefcase fa-3x main-icon"></i>
     </div>
 
     <div id="box-3" class="box">
       <div class="content">
-        <p class="number"><i class="fas fa-dollar-sign"></i>300</p>
+        <p class="number"><i class="fas fa-dollar-sign"></i><%= todayData.todayEarning %></p>
         <p>Earning</p>
       </div>
       <i class="fas fa-wallet fa-3x main-icon"></i>

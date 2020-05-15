@@ -6,6 +6,7 @@ const _ = require('lodash');
 
 const Product = require("../models/product");
 const User = require("../models/user");
+const Order = require("../models/order");
 
 // Set the storage engine
 const storage = multer.diskStorage({
@@ -73,7 +74,10 @@ router.get("/panel", isAdmin, (req, res, next) => {
   Product.find({}, (err, products) => {
     if (!err) {
       if (products.length > 0) {
-        res.render("admin/panel", { products: products.reverse() });
+        // res.render("admin/panel", { products: products.reverse() });
+        getTodayData().then(todayData => {
+          res.render("admin/panel", { products: products.reverse(), todayData: todayData });
+        });
       } else {
         console.log("Products collection is empty");
       }
@@ -209,6 +213,74 @@ router.post("/reset/:id", isAdmin, (req, res, next) => {
 })
 
 module.exports = router;
+
+async function getTodayData() {
+  const todayUsers = await countUsersRegisteredToday();
+  const todayOrderData = await countOrdersAndEarningsMadeToday();
+
+  return {
+    todayUsers: todayUsers,
+    todayOrders: todayOrderData.count,
+    todayEarning: todayOrderData.earnings
+  };
+}
+
+function countUsersRegisteredToday() {
+  let p = new Promise(async (resolve, reject) => {
+    await User.find({}, (err, users) => {
+      if (!err) {
+        if (users.length > 0) {
+          let count = 0;
+          const today = new Date();
+          users.forEach(user => {
+            if (user.createdOn.getDate() === today.getDate() &&
+              user.createdOn.getMonth() === today.getMonth() &&
+              user.createdOn.getFullYear() === today.getFullYear()) {
+              count++;
+            }
+          });
+
+          resolve(count);
+        } else {
+          console.log("Users collection is empty");
+        }
+      }
+    })
+  });
+
+  return p;
+}
+
+function countOrdersAndEarningsMadeToday() {
+  let p = new Promise(async (resolve, reject) => {
+    await Order.find({}, (err, orders) => {
+      if (!err) {
+        if (orders.length > 0) {
+          let count = 0;
+          let earnings = 0;
+          const today = new Date();
+          orders.forEach(order => {
+            if (order.createdOn.getDate() === today.getDate() &&
+              order.createdOn.getMonth() === today.getMonth() &&
+              order.createdOn.getFullYear() === today.getFullYear()) {
+              count++;
+              earnings += order.cart.totalPrice;
+            }
+          });
+
+          resolve({
+            count: count,
+            earnings: earnings
+          });
+        } else {
+          console.log("Orders collection is empty");
+        }
+      }
+    });
+  });
+
+  return p;
+}
 
 function isAdmin(req, res, next) {
   // is Authenticated
