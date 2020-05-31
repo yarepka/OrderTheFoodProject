@@ -79,6 +79,7 @@ router.use("/", notLoggedIn, (req, res, next) => {
 router.get("/signin", (req, res, next) => {
   // get messages stored in request through flash package
   let messages = req.flash("error");
+  console.log("csrfToken: ", req.csrfToken());
   res.render("user/signin", {
     csrfToken: req.csrfToken(),
     messages: messages,
@@ -88,6 +89,7 @@ router.get("/signin", (req, res, next) => {
 
 router.get("/signup", (req, res, next) => {
   let messages = req.flash("error");
+  console.log("Messages", messages);
   res.render("user/signup", {
     csrfToken: req.csrfToken(),
     messages: messages,

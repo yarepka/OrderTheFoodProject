@@ -84,7 +84,7 @@ app.use((req, res, next) => {
   // we want to set the global variable "login"
   // which will be available in all views, which shows
   // if current user authenticated or not 
-  // (for showin buttons in header.hbs)
+  // (for showin buttons in header.ejs)
   res.locals.login = req.isAuthenticated();
 
   // make session available in the views

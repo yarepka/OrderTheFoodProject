@@ -36,7 +36,7 @@ passport.use(
     (req, email, password, done) => {
       // validate passed parameters
       // checkBody is the function added by "validator"
-      // 2nd param is the message will be printed in signup.hbs
+      // 2nd param is the message will be printed in signup.ejs
       req.checkBody("email", "Invalid email").notEmpty().isEmail();
       req
         .checkBody("password", "Invalid password")
@@ -136,12 +136,12 @@ passport.use(
           // 1st param - no errors
           // 2nd param - no any retrived objects (telling that is is not succesfull)
           // 3rd param - flash message
-          return done(null, false, { message: "Email is not registered." });
+          return done(null, false, { msg: "Email is not registered." });
         }
 
         if (!user.validPassword(password)) {
           // password is wrong
-          return done(null, false, { message: "Wrong password." });
+          return done(null, false, { msg: "Wrong password." });
         }
 
         return done(null, user);
